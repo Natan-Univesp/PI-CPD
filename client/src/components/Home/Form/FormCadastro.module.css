@@ -1,0 +1,116 @@
+form h3 {
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: var(--colorSec);
+    text-align: center;
+
+}
+
+
+form h3.titleBoxProd {
+    margin: 0;
+    margin-top: 20px;
+}
+
+/* Personalização do FieldSet (separa os conteúdos) */
+form fieldset {
+    display: grid;
+    gap: 20px;
+    border: 2px solid var(--colorPrim);
+    border-radius: var(--borderRadiusFix);
+    padding: 15px;
+    transition: .2s ease;
+
+}
+
+/* Altera a cor da borda do FIELDSET quando houver qualquer interação com os inputs internos */
+form fieldset:has(:is(input:not([type=checkbox]), select):is(:active, :focus, :valid), :is(.option__collection, .inputCheck__collection) input:checked) {
+    border-color: var(--colorSec);
+}
+
+form fieldset:not(:first-child) {
+    margin: 3em 0;
+}
+
+form fieldset legend {
+    font-weight: 600;
+    font-size: 18px;
+    background-color: var(--colorSec);
+    color: white;
+    padding: 5px 10px;
+}
+
+/* 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Estilização GERAL das Coleções de Informações 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+form fieldset .optionContainer {
+    position: relative;
+
+}
+
+form fieldset .optionTitle {
+    color: var(--colorSec);
+    font-weight: 700;
+
+}
+
+form fieldset .option__collection { 
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+}
+
+
+/* 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Estilização de Seleção de Suprimentos
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+.inputCheck__collection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+form .btnContainer {
+    display: flex;
+    justify-content: center;
+}
+
+form .btnContainer button{
+    font-size: 1.2em;
+    margin: 20px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    background-color: var(--colorSec);
+    color: rgb(245, 245, 245);
+    box-shadow: var(--shadowBox);
+    border: none;
+    cursor: pointer;
+    transition: .3s ease;
+
+}
+
+form .btnContainer button:hover {
+    outline: 1px solid var(--colorSec);
+    background-color: rgb(245, 245, 245);
+    color: var(--colorSec);
+}
+
+@media only screen and (max-width: 575px) {
+
+    fieldset:first-child .option__collection {
+        display: flex;
+        flex-direction: column;
+        align-items: normal;
+        width: 100%;
+        height: auto;
+    }
+
+
+}

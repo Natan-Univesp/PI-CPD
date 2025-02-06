@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+  /* Variáveis gerais */
+  --borderRadiusFix: 8px;
+  --borderContrast: 1px solid #f3f3f399;
+  --colorBright: rgba(53, 53, 53, 0.2);
+  --colorDeg: #4b4b4b;
+  --colorFontForm: rgb(196, 196, 196);
+  --colorGradient: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(5,5,5,1) 35%, rgba(10,10,10,1) 100%);
+  --colorInactive : rgb(196,196,196);
+  --colorNav: rgba(75, 75, 75, 0.212);
+  --colorNegative: #dc3545;
+  --colorPending: #ffc107;
+  --colorPositive: #28a745;
+  --colorPrim: #f5f5f5;
+  --colorSec: #080808;
+  --colorAux: white;
+  --fontPrim: 'Quicksand', sans-serif;
+  --fontSec: 'Poppins', sans-serif;
+  --fontSizeContent: 2em;
+  --fontSizeTitleContent: 23px;
+  --fontMargin: 1em 0;
+  --marginContent: 0.65rem;
+  --marginTitleContent: 0 0 1em 0;
+  
+  /* Variáveis para a NavBar*/
+  --fontSizeNav: 1.2em;
+  --shadowBox: 2px 2px 10px 7px #e5e5e526;
+  --widthNav: 280px;
+
+  /* Variáveis para a SubNavBar */
+  --widthSubNavFix: 240px;
+
+  /* Variáveis para o Form de Login e Cadastro */
+  --widthFixFormContainer: 800px;
+  --widthFixFormContent: calc(var(--widthFixFormContainer)/2);
+
+  /* Variáveis para o responsivo */
+  --fontSizeContentResp: 1.65em;
+  --fontSizeNavResp: 18px;
+  --widthNavResp: 240px;
+  --marginSaldoResp: 0.5em;
+
+
+}

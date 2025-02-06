@@ -1,0 +1,38 @@
+.textAreaContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.textAreaContainer label {
+    text-align: left;
+    font-size: 1em;
+    color: var(--colorInactive);
+    transition: .1s ease-in-out;
+    font-weight: 500;
+}
+
+.textAreaContainer textarea {
+    width: 100%;
+    height: 130px;
+    margin-top: 3px;
+    padding: 10px 10px;
+    font-family: var(--fontSec);
+    font-size: 16px;
+    background-color: rgb(245, 245, 245);
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    resize: none;
+
+}
+
+.textAreaContainer:has(textarea:is(:active, :focus, :valid:not(:placeholder-shown))) label {
+    color: var(--colorSec);
+    font-weight: 700;
+}
+
+.textAreaContainer textarea::placeholder {
+    opacity: .3;
+}

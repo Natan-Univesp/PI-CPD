@@ -1,0 +1,57 @@
+/* 
+================================================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Estilização Destinada ao Container de Produtos
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+================================================================
+*/
+form .boxSupply__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+form .boxSupply__container .boxSupply__content {
+    width: 15em;
+    display: grid;
+    gap: 20px;
+    padding: 15px 10px;
+    box-shadow: var(--shadowBox);
+    border-radius: var(--borderRadiusFix);
+    border: var(--borderContrast);
+    margin: var(--marginContent) var(--marginContent) 0 0;
+
+}
+
+form .boxSupply__container:not(:has(.boxSupply__content:nth-child(2))) .boxSupply__content:first-child {
+    margin-right: 0;
+}
+
+form .btnContainer {
+    display: flex;
+    justify-content: center;
+}
+
+form .btnContainer button{
+    font-size: 1.5em;
+    border: none;
+    margin: 20px;
+    padding: 10px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    background-color: var(--colorSec);
+    color: rgb(245, 245, 245);
+    box-shadow: var(--shadowBox);
+    cursor: pointer;
+    transition: .3s ease;
+
+}
+
+form .btnContainer button:hover {
+    outline: 1px solid var(--colorSec);
+    background-color: rgb(245, 245, 245);
+    color: var(--colorSec);
+    transform: translateY(-5%);
+}

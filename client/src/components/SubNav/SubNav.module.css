@@ -1,0 +1,123 @@
+/* 
+============================================
+Aba de Navegação dos produtos
+============================================
+*/
+nav.subNav {
+    border-radius: 8px;
+    width: fit-content;
+    background-color: white;
+    padding: 10px 5px;
+    box-shadow: var(--shadowBox);
+    position: relative;
+    display: flex;
+    align-items: center;
+
+}
+
+nav.subNav ul {
+    display: flex;
+}
+
+nav.subNav ul li {
+    width: var(--widthSubNavFix);
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+    z-index: 1;
+}
+
+nav.subNav ul li a {
+    color: var(--colorSec);
+    font-size: 18px;
+    padding: 0 10px;
+    transition: .3s;   
+
+}
+
+nav.subNav ul li a:hover {
+    color: var(--colorDeg);
+
+}
+
+nav.subNav ul li a.active {
+    color: white;
+
+}
+
+/* 
+    Indica em qual Página o usuário está
+*/
+nav.subNav .subNav__activeContainer {
+    position: absolute;
+    width: var(--widthSubNavFix);
+    height: 32px;
+    margin: 10px 0;
+    background-color: var(--colorSec);
+    border-radius: var(--borderRadiusFix);
+    transition: .3s ease;
+    z-index: 0;
+
+}
+
+nav.subNav ul:has(li:first-child a.active) ~ .subNav__activeContainer {
+    transform: translateX(0);
+
+}
+
+nav.subNav ul:has(li:last-child a.active) ~ .subNav__activeContainer {
+    transform: translateX(100%);
+
+}
+
+@media only screen and (max-width: 991px) {
+    nav.subNav {
+        margin: auto;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+
+    nav.subNav {
+        white-space: nowrap;
+        height: fit-content;
+        align-items: start;
+    }
+
+    nav.subNav ul {
+        display: flex;
+        flex-direction: column;
+    }
+
+    nav.subNav ul li {
+        width: 200px;
+        height: 30px;
+        align-items: center;
+    }
+
+    nav.subNav ul li:last-child {
+        margin-top: 3px;
+    }
+
+    nav.subNav ul li a {
+        font-size: 18px;
+    }
+
+    nav.subNav .subNav__activeContainer {
+        width: 200px;
+        height: 32px;
+        margin: 0;
+
+    }
+
+    nav.subNav ul:has(li:first-child a.active) ~ .subNav__activeContainer {
+        transform: translateY(0);
+    
+    }
+
+    nav.subNav ul:has(li:last-child a.active) ~ .subNav__activeContainer {
+        transform: translateY(100%);
+    
+    }
+
+}

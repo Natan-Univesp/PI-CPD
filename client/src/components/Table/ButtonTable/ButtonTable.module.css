@@ -1,0 +1,20 @@
+button.btnTable:hover { opacity: 0.8; }
+
+button:is(.acceptBtn, .editBtn) { background-color: var(--colorSec); }
+
+button.delBtn { background-color: var(--colorNegative); }
+
+button.restoreBtn { background-color: var(--colorPending); }
+
+button.subBtn {
+    background-color: var(--colorBright);
+    color: var(--colorSec);
+}
+
+button.inactiveBtn {
+    pointer-events: none;
+    user-select: none;
+    background-color: var(--colorInactive);
+    align-self: start; 
+}
+

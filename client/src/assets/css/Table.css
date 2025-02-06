@@ -1,0 +1,231 @@
+@import url(./var.css);
+
+/* 
+===================================================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                        Container da Tabela
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+===================================================================
+*/
+
+.tableContainer {
+    margin: var(--marginContent);
+    overflow: auto;
+}
+
+.tableContainer:not(:last-child) {
+    margin-bottom: 3em;
+}
+
+/* 
+===================================================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                          Estilização geral
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+===================================================================
+*/
+
+.tableContainer :is(.generalInfo__container, .splitContainer, .generalInfo__content) {
+    display: flex;
+    align-items: center;
+}
+
+table, td {
+    border-collapse: collapse;
+
+}
+
+table {
+    width: 100%;
+    background-color: white;
+    border-radius: var(--borderRadiusFix);
+    box-shadow: var(--shadowBox);
+    border: none;
+    /* Deixar todo conteudo dentro da tabela, mantendo as bordas*/
+    overflow: hidden;
+}
+
+table thead tr:not(.tableHeader, .tableTitle) {
+    color: black;
+    text-align: left;
+    background-color: #f9f9f9;
+
+}
+
+
+/* 
+===================================================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Estilização do Header (contém informações do solicitante, data...)
+                         == TableRequest ==
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+===================================================================
+*/
+
+.tableHeader {
+    background-color: var(--colorSec);
+    font-size: 17px;
+}
+
+.generalInfo__container { justify-content: space-between; }
+
+:is(.generalInfo__container, .splitContainer) { gap: 2em; }
+
+/* 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Estilização de Content (texto, subtítulos...)
+                         == TableProds ==
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+
+.generalInfo__content {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    text-align: center;
+}
+
+.generalInfo__content span{
+    font-family: var(--fontPrim);
+    font-weight: 600;
+    color: white;
+    border-bottom: 2px solid white;
+}
+
+.generalInfo__content p {
+    font-family: var(--fontSec);
+    font-size: 16px;
+    font-weight: 400;
+    color: white;
+}
+
+.infoRequest__status p{
+    padding: 5px 15px;
+    font-weight: 500;
+    color: white;
+    background-color: var(--colorSaldoPos);
+    border-radius: var(--borderRadiusFix);
+}
+
+.generalInfo__container .generalInfo__Btn {
+    padding: 15px 25px;
+    background-color: white;
+    color: black;
+    font-weight: 800;
+    letter-spacing: .2px;
+}
+
+.generalInfo__container .generalInfo__Btn:hover {
+    outline: 1px solid white;
+    background-color: var(--colorSec);
+    color: white;
+    opacity: 1;
+}
+
+/* 
+===================================================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            Estilização dos campos das informações
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+===================================================================
+*/
+
+table thead tr.tableTitle th {
+    text-align: left;
+    font-size: var(--fontSizeTitleContent);
+    padding: 0.5em 15px;
+}
+
+
+table thead tr th.tableContent__actionTitle {
+    text-align: center;
+}
+
+table th, table td {
+    padding: 10px 15px;
+
+}
+
+/* 
+===================================================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                    Estilização de Registros
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+===================================================================
+*/
+
+table tbody td {
+    white-space: nowrap;
+    border: none;
+    border-bottom: 1px solid #cccccc3b;
+    table-layout: auto;
+    font-family: var(--fontSec);
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #fdfdfd;
+}
+
+table tbody td input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: var(--colorPrim);
+    font-family: var(--fontSec);
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: var(--borderRadiusFix);
+    transition: .2s ease;
+}
+
+table tbody td input:read-only {
+    padding: 5px 0;
+    background-color: transparent;
+    user-select: none;
+    cursor: default;
+
+}
+
+
+/* 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        Informações de Tabela não editáveis
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+
+table td p:is(.success, .unSuccessful, pending) {
+    width: fit-content;
+    font-weight: 400;
+    padding: 5px 10px;
+    border-radius: var(--borderRadiusFix);
+
+}
+
+table td p.success { color: white; background-color: var(--colorPositive); }
+table td p.unSuccessful { color: white; background-color: var(--colorNegative); }
+table td p.pending { color: white; background-color: var(--colorPending); }
+
+td.tableContent__customField { width: 750px; white-space: normal;}
+
+td.tableContent__customField p {
+    display: -webkit-box;
+    line-clamp: 3;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.tableContent__btns {
+    display: flex;
+    justify-content: center;
+}
+
+.tableContent__btns button {
+    padding: 10px;
+    margin: 0 5px;
+}
+
+
+
+
+

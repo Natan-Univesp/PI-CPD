@@ -1,0 +1,132 @@
+.infoExtra {
+    display: flex;
+    justify-content: center;
+}
+
+.infoExtra .infoExtra__content {
+    /* border: 1px solid #f3f3f399 */
+    width: 100%;
+    max-width: 25em; 
+    height: auto;
+    margin: var(--marginContent);
+    padding: 15px;
+    background-color: white;
+    border-radius: var(--borderRadiusFix);
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadowBox);
+    user-select: none;
+    transition: .3s;
+    overflow: hidden;
+    
+}
+
+.infoExtra .infoExtra__content:hover {
+    transform: translateY(-10%);
+
+}
+
+/* 
+==============================================================
+Inicío Título Content 
+==============================================================
+*/
+
+.infoExtra .infoExtra__content .content__title {
+    display: flex;
+    align-items: center;
+
+}
+
+.infoExtra .infoExtra__content .content__title .title__icon {
+    font-size: 2.65em;
+    color: var(--colorSec);
+    margin-right: 10px;
+    padding: 5px;
+    background-color: var(--colorBright);
+    border-radius: var(--borderRadiusFix);
+}
+
+.infoExtra .infoExtra__content .content__title .title__text {
+    font-weight: 600;
+}
+
+
+/*
+==============================================================
+Fim Título Content
+==============================================================
+*/
+
+.content__infoStatic {
+    font-size: 2em;
+    font-weight: 500;
+
+}
+
+.content__infoStatic,
+.content__infoDinamic {
+    margin-top: 20px;
+}
+
+.infoExtra__content .content__infoDinamic {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 500px;
+    align-items: normal;
+    font-size: 1.3em;
+    font-weight: 600;
+    animation: autoScrollText 10s alternate linear infinite;
+}
+
+.infoExtra__content .content__infoDinamic p { white-space: nowrap; }
+
+@keyframes autoScrollText {
+    from {
+        transform: translateX(-115%);
+
+    }
+
+    to {
+        transform: translateX(85%);
+    }
+}
+
+@media only screen and (max-width: 1199px) {
+    .infoExtra {
+        display: grid;
+        padding: var(--marginContent);
+        justify-items: center;
+        grid-template: 1fr 1fr / 1fr 1fr;
+        gap: calc(var(--marginContent) * 2);
+
+    }
+
+    .infoExtra .infoExtra__content {
+        margin: 0;
+        max-width: 100%;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .infoExtra {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 0;
+        padding: 0;
+        
+    }
+
+    .infoExtra .infoExtra__content {
+        margin: var(--marginContent);
+        width: 100%;
+        text-align: center;
+    }
+
+    .infoExtra .infoExtra__content .content__title {
+        display: block;
+    }
+}

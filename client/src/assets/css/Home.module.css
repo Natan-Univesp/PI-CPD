@@ -1,0 +1,68 @@
+/* 
+============================================
+Estilização da aba Home
+============================================
+*/
+
+section.home .mainContent {
+    display: grid;
+    grid-template: auto 1fr/ 50vw 1fr;
+
+}
+
+.mainContent .formMain,
+.mainContent .calendar,
+.mainContent .quickShortCut {
+    height: fit-content;
+}
+
+.mainContent .formMain {
+    grid-row: span 2;
+
+}
+
+.mainContent .calendar {
+    overflow: hidden;
+    grid-column: 2;
+}
+
+
+.mainContent .quickShortCut {
+    grid-area: 2/2;
+
+}
+
+@media (min-width: 1800px) {
+    section.home .mainContent {
+        grid-template-columns: 55vw 1fr;
+    }
+}
+
+@media only screen and (max-width: 1199px) {
+    section.home .mainContent {
+        /* Linha / Coluna */
+        grid-template: auto 1fr/ 1fr 1fr;
+    }
+
+    .mainContent .formMain {
+        grid-row: 1;
+        grid-column: span 2;
+    }
+
+    .mainContent .calendar {
+        grid-area: 2 / 1;
+
+    }
+
+    .mainContent .quickShortCut {
+        grid-area: 2 / 2;
+    }
+    
+}
+
+@media only screen and (max-width: 767px) {
+    section.home .mainContent {
+        display: flex;
+        flex-direction: column;
+    }
+}

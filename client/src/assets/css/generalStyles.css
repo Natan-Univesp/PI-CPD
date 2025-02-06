@@ -1,0 +1,85 @@
+/* 
+Estilização textual
+*/
+
+h1.mainTitle {
+    font-size: var(--fontSizeContent);
+    text-align: center;
+    margin: var(--fontMargin);
+}
+
+h2.subTitle {
+    width: fit-content;
+    margin: var(--marginContent);
+    margin-top: 1.3em;
+    padding: 5px 30px;
+    background-color: var(--colorSec);
+    color: white;
+}
+
+h3.textMargin {
+    margin: 0 var(--marginContent);
+}
+
+.textMargin {
+    margin: var(--marginContent);
+}
+
+.textInfoNotAvaliable {
+    font-family: var(--fontSec);
+    font-size: 16px;
+}
+
+
+/* Estilização de Layouts */
+
+.layoutFlexCollectionCard {
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(var(--marginContent) * 2);
+    margin: var(--marginContent);
+
+}
+
+.layoutFormContentSpacing {
+    display: grid;
+    gap: 20px;
+}
+
+
+/* Inputs customizados */
+.inputCollection__dual {
+    display: flex;
+    gap: 15px;
+}
+
+/* Botões customizados */
+.buttonForm-style1 {
+    margin: auto;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    background-color: var(--colorSec);
+    border: 1px solid var(--colorSec);
+    transition: .2 ease;
+}
+
+.buttonForm-style1:hover {
+    background-color: var(--colorAux);
+    color: var(--colorSec);
+}
+
+
+@media only screen and (max-width: 767px) {
+    h2.subTitle {
+        width: 100%;
+        text-align: center;
+        margin: var(--marginContent) 0;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    .layoutFlexCollectionCard {
+        justify-content: center;
+    }
+}
