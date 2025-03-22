@@ -4,13 +4,7 @@ import { useEffect } from "react";
 
 export default function ViewRequest() {
     const { setTitle } = useOutletContext();
-
-    /* 
-        |       Tabela de status        |
-        ---------------------------------               
-        |   1 = Pronto para retirada    |
-        | 2 = Não disponível no estoque |
-    */
+    
     const info = [{_id: 1, 
                    solicitante: {
                     nome_solicitante: "Claudia Guiné Ranete",
@@ -18,8 +12,8 @@ export default function ViewRequest() {
                     local: "Jardim América"
                    },
                    suprimentos: [
-                        {_id: 1, modelo: "TN580", marca: "Brother", categoria: "Toner", qtd: 1, status: 1},
-                        {_id: 2, modelo: "D111", marca: "Samsung", categoria: "Toner", qtd: 1, status: 2}
+                        {_id: 1, modelo: "TN580", marca: "Brother", categoria: "Toner", qtd: 1, status: "disponivel"},
+                        {_id: 2, modelo: "D111", marca: "Samsung", categoria: "Toner", qtd: 1, status: "indisponivel"}
                    ],
                    data_solicitacao: "12-10-2024"
                 },
@@ -30,8 +24,8 @@ export default function ViewRequest() {
                      local: "Secretária da Educação"
                     },
                     suprimentos: [
-                         {_id: 1, modelo: "DR620", marca: "Brother", categoria: "Cilindro", qtd: 1, status: 1},
-                         {_id: 2, modelo: "D111", marca: "Samsung", categoria: "Toner", qtd: 1, status: 1}
+                         {_id: 1, modelo: "DR620", marca: "Brother", categoria: "Cilindro", qtd: 1, status: "disponivel"},
+                         {_id: 2, modelo: "D111", marca: "Samsung", categoria: "Toner", qtd: 1, status: "disponivel"}
                     ],
                     data_solicitacao: "20-10-2024"
                  }
