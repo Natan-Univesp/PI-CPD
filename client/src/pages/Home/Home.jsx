@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import styles from '../assets/css/Home.module.css';
 
 //Icones do infoExtra;
 import { BsBoxes as IconToners } from 'react-icons/bs';
@@ -8,8 +7,10 @@ import { TbCylinder as IconCilindro } from 'react-icons/tb';
 import { BsPrinter as IconPrinter } from 'react-icons/bs';
 import { MdOutlinePendingActions as IconRequest } from 'react-icons/md';
 
-import SubNav from '../components/SubNav/SubNav';
-import MainLayout from '../components/layout/MainLayout';
+import { SubNav } from '../../components/SubNav/SubNav';
+import MainLayout from '../../components/layout/MainLayout';
+
+import styles from './Home.module.css';
 
 export default function Home() {
   const [title, setTitle] = useState('Visão Geral');

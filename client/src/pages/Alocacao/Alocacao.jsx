@@ -1,28 +1,29 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
-//icones
+//Icones
 import { BsBoxSeam as IconDisponivel } from 'react-icons/bs';
 import { PiHandWithdraw as IconRetirada } from 'react-icons/pi';
 import { LuPackageSearch as IconRequest } from 'react-icons/lu';
 import { TbDatabaseSearch as IconMoreRequest } from 'react-icons/tb';
 
-import SubNav from '../components/SubNav/SubNav';
-import MainLayout from '../components/layout/MainLayout';
+import { SubNav } from '../../components/SubNav/SubNav';
+import MainLayout from '../../components/layout/MainLayout';
 
-export default function Toner() {
-  const [title, setTitle] = useState('Toners');
+export default function Alocacao() {
+  const [title, setTitle] = useState('Alocação de Impressoras');
 
   const infoSubNav = [
     {
-      link: '/toner',
-      text: 'Informações de Toners',
+      link: '/alocacao',
+      text: 'Alocação de Impressoras',
     },
     {
       link: 'report',
-      text: 'Relatório de Toners',
+      text: 'Relatório de Alocação',
     },
   ];
+
   const infoBoxExtra = [
     {
       id: 1,

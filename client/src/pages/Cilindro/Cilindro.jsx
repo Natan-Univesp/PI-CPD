@@ -7,22 +7,22 @@ import { PiHandWithdraw as IconRetirada } from 'react-icons/pi';
 import { LuPackageSearch as IconRequest } from 'react-icons/lu';
 import { TbDatabaseSearch as IconMoreRequest } from 'react-icons/tb';
 
-import MainLayout from '../components/layout/MainLayout';
-import SubNav from '../components/SubNav/SubNav';
+import MainLayout from '../../components/layout/MainLayout';
+import { SubNav } from '../../components/SubNav/SubNav';
 
-export default function Tintas() {
-  const [title, setTitle] = useState('Tintas');
+export default function Cilindro() {
+  const [title, setTitle] = useState('Cilindros');
+
   const infoSubNav = [
     {
-      link: '/tintas',
-      text: 'Informações de Tintas',
+      link: '/cilindro',
+      text: 'Informações de Cilindros',
     },
     {
       link: 'report',
-      text: 'Relatório de Tintas',
+      text: 'Relatório de Cilindros',
     },
   ];
-
   const infoBoxExtra = [
     {
       id: 1,
@@ -53,7 +53,6 @@ export default function Tintas() {
       classInfo: 'content__infoStatic',
     },
   ];
-
   return (
     <>
       <SubNav navInfo={infoSubNav} />

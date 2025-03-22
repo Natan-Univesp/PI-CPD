@@ -7,20 +7,20 @@ import { PiHandWithdraw as IconRetirada } from 'react-icons/pi';
 import { LuPackageSearch as IconRequest } from 'react-icons/lu';
 import { TbDatabaseSearch as IconMoreRequest } from 'react-icons/tb';
 
-import MainLayout from '../components/layout/MainLayout';
-import SubNav from '../components/SubNav/SubNav';
+import { SubNav } from '../../components/SubNav/SubNav';
+import MainLayout from '../../components/layout/MainLayout';
 
-export default function Cilindro() {
-  const [title, setTitle] = useState('Cilindros');
+export default function Toner() {
+  const [title, setTitle] = useState('Toners');
 
   const infoSubNav = [
     {
-      link: '/cilindro',
-      text: 'Informações de Cilindros',
+      link: '/toner',
+      text: 'Informações de Toners',
     },
     {
       link: 'report',
-      text: 'Relatório de Cilindros',
+      text: 'Relatório de Toners',
     },
   ];
   const infoBoxExtra = [
@@ -28,28 +28,28 @@ export default function Cilindro() {
       id: 1,
       IconBox: IconDisponivel,
       infoBox: '50',
-      titleBox: 'Cilindros Disponíveis',
+      titleBox: 'Toners Disponíveis',
       classInfo: 'content__infoStatic',
     },
     {
       id: 2,
       IconBox: IconRetirada,
       infoBox: '10',
-      titleBox: 'Cilindros retirados',
+      titleBox: 'Toners retirados',
       classInfo: 'content__infoStatic',
     },
     {
       id: 3,
       IconBox: IconRequest,
       infoBox: '2',
-      titleBox: 'Cilindros solicitados',
+      titleBox: 'Toners solicitados',
       classInfo: 'content__infoStatic',
     },
     {
       id: 4,
       IconBox: IconMoreRequest,
-      infoBox: 'R116',
-      titleBox: 'Cilindros mais solicitado no Mês',
+      infoBox: 'D111',
+      titleBox: 'Toner mais solicitado no Mês',
       classInfo: 'content__infoStatic',
     },
   ];

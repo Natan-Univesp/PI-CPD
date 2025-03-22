@@ -1,26 +1,25 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
-//Icones
+//icones
 import { BsBoxSeam as IconDisponivel } from 'react-icons/bs';
 import { PiHandWithdraw as IconRetirada } from 'react-icons/pi';
 import { LuPackageSearch as IconRequest } from 'react-icons/lu';
 import { TbDatabaseSearch as IconMoreRequest } from 'react-icons/tb';
 
-import SubNav from '../components/subNav/SubNav';
-import MainLayout from '../components/layout/MainLayout';
+import MainLayout from '../../components/layout/MainLayout';
+import { SubNav } from '../../components/SubNav/SubNav';
 
-export default function Alocacao() {
-  const [title, setTitle] = useState('Alocação de Impressoras');
-
+export default function Tintas() {
+  const [title, setTitle] = useState('Tintas');
   const infoSubNav = [
     {
-      link: '/alocacao',
-      text: 'Alocação de Impressoras',
+      link: '/tintas',
+      text: 'Informações de Tintas',
     },
     {
       link: 'report',
-      text: 'Relatório de Alocação',
+      text: 'Relatório de Tintas',
     },
   ];
 
@@ -29,31 +28,32 @@ export default function Alocacao() {
       id: 1,
       IconBox: IconDisponivel,
       infoBox: '50',
-      titleBox: 'Toners Disponíveis',
+      titleBox: 'Cilindros Disponíveis',
       classInfo: 'content__infoStatic',
     },
     {
       id: 2,
       IconBox: IconRetirada,
       infoBox: '10',
-      titleBox: 'Toners retirados',
+      titleBox: 'Cilindros retirados',
       classInfo: 'content__infoStatic',
     },
     {
       id: 3,
       IconBox: IconRequest,
       infoBox: '2',
-      titleBox: 'Toners solicitados',
+      titleBox: 'Cilindros solicitados',
       classInfo: 'content__infoStatic',
     },
     {
       id: 4,
       IconBox: IconMoreRequest,
-      infoBox: 'D111',
-      titleBox: 'Toner mais solicitado no Mês',
+      infoBox: 'R116',
+      titleBox: 'Cilindros mais solicitado no Mês',
       classInfo: 'content__infoStatic',
     },
   ];
+
   return (
     <>
       <SubNav navInfo={infoSubNav} />
