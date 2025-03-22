@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import styles from './ModalContainer.module.css';
 
 //Icones
@@ -12,7 +11,7 @@ import { useModal } from "../../../Context/ModalContext";
 import { ModalRegisterToner } from "../ModalRegisterToner/ModalRegisterToner";
 
 export default function ModalContainer() {
-    const {modalRef, defineModalParams} = useModal();
+    const {modalRef, closeModal} = useModal();
 
     const [modal, setModal] = useState(); 
 
@@ -22,7 +21,7 @@ export default function ModalContainer() {
 
 
     const handleClickClose = () => {
-        defineModalParams({isOpen: false, modalName: ""});
+        closeModal();
         setModal({});
     }
 
@@ -53,10 +52,4 @@ export default function ModalContainer() {
             </div>
         </div>
     )
-}
-
-ModalContainer.propTypes = {
-    modalRequestName: PropTypes.string,
-    handleClickModalClose: PropTypes.func,
-    customStyle: PropTypes.object
 }

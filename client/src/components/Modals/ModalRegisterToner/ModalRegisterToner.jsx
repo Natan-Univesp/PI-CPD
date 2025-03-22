@@ -1,8 +1,8 @@
-import { FormToner } from "../../Form/FormToner/FormToner";
+import { FormSupply } from "../../Form/FormSupply/FormSupply";
 
 export function ModalRegisterToner() {
 
     return(
-        <FormToner/>
+        <FormSupply/>
     )
 }

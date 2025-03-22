@@ -20,12 +20,17 @@ export function ModalProvider({children}) {
     }
 
 
-    const showModal = (modalNameRef, customStyleRef = {}, dataInfo = {}) => {
-        defineModalParams({isOpen: true, modalName: modalNameRef, customStyle: customStyleRef, data: dataInfo})
+    const showModal = ({modalName, customStyle = {}, data = {}}) => {
+        defineModalParams({isOpen: true, modalName, customStyle, data})
+    }
+
+    const closeModal = () => {
+        defineModalParams({isOpen: false, modalName: "", customStyle: {}, data: {}});
+
     }
 
     return(
-        <ModalContext.Provider value={{modalRef, defineModalParams, showModal}}>
+        <ModalContext.Provider value={{modalRef, defineModalParams, showModal, closeModal}}>
             {modalRef.isOpen && createPortal(<ModalContainer/>, document.body)}
             {children}
         </ModalContext.Provider>

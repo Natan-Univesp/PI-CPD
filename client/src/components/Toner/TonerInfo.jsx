@@ -6,11 +6,12 @@ import { useModal } from "../../Context/ModalContext";
 
 export default function TonerInfo() {
     const {setTitle} = useOutletContext();
-    const {showModal} = useModal();
+    const { showModal } = useModal();
 
     //Definição de título
     useEffect(() => {
         setTitle("Toners");
+        showModal({modalName: "registerToner", customStyle: {overflow: "initial"}})
     }, [])
 
 
