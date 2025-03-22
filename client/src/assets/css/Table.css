@@ -201,9 +201,9 @@ table td p:is(.success, .unSuccessful, pending) {
 
 }
 
-table td p.success { color: white; background-color: var(--colorPositive); }
-table td p.unSuccessful { color: white; background-color: var(--colorNegative); }
-table td p.pending { color: white; background-color: var(--colorPending); }
+table td p.success { color: white; background-color: var(--colorGreen); }
+table td p.unSuccessful { color: white; background-color: var(--colorRed); }
+table td p.pending { color: white; background-color: var(--colorYellow); }
 
 td.tableContent__customField { width: 750px; white-space: normal;}
 

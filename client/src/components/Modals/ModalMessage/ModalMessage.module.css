@@ -59,15 +59,15 @@
 }
 
 .modalSuccess .modalMessageContent__header svg{
-    background-color: var(--colorPositive);
+    background-color: var(--colorGreen);
 }
 
 .modalAlert .modalMessageContent__header svg{
-    background-color: var(--colorPending);
+    background-color: var(--colorYellow);
 }
 
 .modalImportant .modalMessageContent__header svg{
-    background-color: var(--colorNegative);
+    background-color: var(--colorRed);
 }
 
 

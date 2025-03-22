@@ -137,7 +137,7 @@ Estilização dos Links
     display: none;
 }
 
-.navContent__info ul :is(li.activeDropDown, li:has(.active)) ul{
+.navContent__info ul :is(li.activeDropDown) ul{
     display: block;
 }
 
@@ -145,11 +145,11 @@ Estilização dos Links
     margin-right: -15px;
 }
 
-.navContent__info ul :is(li.activeDropDown, li:has(.active)) .iconDropList {
+.navContent__info ul :is(li.activeDropDown) .iconDropList {
     transform: rotate(180deg);
 }
 
-.navContent__info ul :is(li.activeDropDown, li:has(ul li .active), li:hover) {
+.navContent__info ul :is(li.activeDropDown, li:hover) {
     background-color: var(--colorBright);
 }
 
@@ -281,16 +281,6 @@ Responsividade
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ===================================================================
 */
-
-@media only screen and (min-width: 1400px) {
-    .navContent__info ul li:has(ul):hover ul{
-        display: block;
-    }
-
-    .navContent__info ul li:has(ul):hover .iconDropList {
-        transform: rotate(180deg);
-    }
-}
 
 @media only screen and (max-width: 1399px) {
     header.navContainer {

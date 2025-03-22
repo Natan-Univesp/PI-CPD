@@ -11,9 +11,9 @@
   --colorGradient: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(5,5,5,1) 35%, rgba(10,10,10,1) 100%);
   --colorInactive : rgb(196,196,196);
   --colorNav: rgba(75, 75, 75, 0.212);
-  --colorNegative: #dc3545;
-  --colorPending: #ffc107;
-  --colorPositive: #28a745;
+  --colorRed: #dc3545;
+  --colorYellow: #ffc107;
+  --colorGreen: #28a745;
   --colorPrim: #f5f5f5;
   --colorSec: #080808;
   --colorAux: white;
