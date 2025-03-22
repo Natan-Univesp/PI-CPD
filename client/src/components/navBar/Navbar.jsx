@@ -1,25 +1,24 @@
+import { useState } from "react";
 import Navlist from "./Navlist";
 import styles from "./Navbar.module.css";
 
 //Icones
+//navBarMenu Responsive 
+import { HiMenu as IconMenu} from "react-icons/hi";
 //Home
 import { FaHome as IconHome} from "react-icons/fa";
 //Toners
 import { FaBoxesStacked as IconBox} from "react-icons/fa6";
-
-
-//navBarMenu Responsive 
-import { HiMenu as IconMenu} from "react-icons/hi";
-import { useState } from "react";
+//Ícone de Tintas
+import { RiInkBottleLine as IconInk} from "react-icons/ri";
+//Ícone de Marca
+import { BiCategory as IconMarca } from "react-icons/bi";
+//Ícone de Administrador
+import { MdAdminPanelSettings as IconAdmin } from "react-icons/md";
 //Ícone de Usuário
 import { FaUser as IconUser} from "react-icons/fa";
 //Ícone de Logout
 import { TbLogout as IconLogout} from "react-icons/tb";
-//Ícone de Tintas
-import { RiInkBottleLine as IconInk} from "react-icons/ri";
-
-
-
 
 export default function Navbar() {
 
@@ -32,22 +31,42 @@ export default function Navbar() {
             icon:<IconHome className={styles.iconList}/>
         },
         {
-            id: 3,
-            title: "Toners",
-            path: "/toner",
-            icon: <IconBox className={styles.iconList}/>
+            id: 2,
+            title: "Suprimentos",
+            icon: <IconBox className={styles.iconList}/>,
+            subList: [
+                {
+                    id: 3,
+                    title: "Toners",
+                    path: "/toner",
+                    icon: <IconBox className={styles.iconList}/>
+                },
+                {
+                    id: 4,
+                    title: "Cilindros", 
+                    path:"/cilindro", 
+                    icon:<IconBox className={styles.iconList}/>},
+                {
+                    id: 5,
+                    title: "Tintas", 
+                    path: "/tintas", 
+                    icon: <IconInk className={styles.iconList}/>
+                },
+                {
+                    id: 6,
+                    title: "Marcas",
+                    path: "/marca",
+                    icon: <IconMarca className={styles.iconList}/>
+                } 
+            ]
         },
         {
-            id: 4,
-            title: "Cilindros", 
-            path:"/cilindro", 
-            icon:<IconBox className={styles.iconList}/>},
-        {
-            id: 5,
-            title: "Tintas", 
-            path: "/tintas", 
-            icon: <IconInk className={styles.iconList}/>
-        },
+            id: 7,
+            title: "Administrador",
+            path: "/admin",
+            icon: <IconAdmin className={styles.iconList}/>
+        }
+
     ]
 
     const [isActiveMenu, setIsActiveMenu] = useState(false);
