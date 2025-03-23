@@ -1,55 +1,74 @@
 import { useEffect, useState } from "react";
-import styles from './ModalContainer.module.css';
+import styles from "./ModalContainer.module.css";
 
 //Icones
-import { IoClose as IconClose } from 'react-icons/io5';
+import { IoClose as IconClose } from "react-icons/io5";
 
 //Context
 import { useModal } from "../../../Context/ModalContext";
 
 //Componentes
 import { ModalRegisterToner } from "../ModalRegisterToner/ModalRegisterToner";
+import { ModalRegisterUser } from "../ModalRegisterUser/ModalRegisterUser";
+import { ModalRegisterMarca } from "../ModalRegisterMarca/ModalRegisterMarca";
 
 export default function ModalContainer() {
-    const {modalRef, closeModal} = useModal();
+    const { modalRef, closeModal } = useModal();
 
-    const [modal, setModal] = useState(); 
+    const [modal, setModal] = useState();
 
-    const modalCollection = [{name: "registerToner", title: "Cadastro de Novo Toner", modalContent: <ModalRegisterToner/>},
-
-    ]
-
+    const modalCollection = [
+        {
+            name: "registerToner",
+            title: "Cadastro de Novo Toner",
+            modalContent: <ModalRegisterToner />,
+        },
+        {
+            name: "registerUser",
+            title: "Cadastro de Usuário",
+            modalContent: <ModalRegisterUser />,
+        },
+        {
+            name: "registerMarca",
+            title: "Adicionar Marca de Suprimentos",
+            modalContent: <ModalRegisterMarca/>
+        }
+    ];
 
     const handleClickClose = () => {
         closeModal();
         setModal({});
-    }
-
+    };
 
     useEffect(() => {
-        const modalSelected = modalCollection.filter(modal => modal.name === modalRef.modalName)[0];
+        const modalSelected = modalCollection.filter(
+            (modal) => modal.name === modalRef.modalName
+        )[0];
         setModal(modalSelected);
+    }, [modalRef]);
 
-    },[modalRef]);
-
-
-
-    return(
+    return (
         <div className={styles.modal__cover}>
-            <div className={`${styles.modalContainer} activeModal fadeIn`} style={modalRef?.customStyle && modalRef.customStyle}>
-                {modal ?
+            <div
+                className={`${styles.modalContainer} activeModal fadeIn`}
+                style={modalRef?.customStyle && modalRef.customStyle}
+            >
+                {modal ? (
                     <>
                         <span className={styles.modalContent__header}>
                             <h1>{modal.title}</h1>
-                            <IconClose className={styles.closeIcon} onClick={handleClickClose}/>
+                            <IconClose
+                                className={styles.closeIcon}
+                                onClick={handleClickClose}
+                            />
                         </span>
                         <hr />
                         {modal.modalContent}
                     </>
-                : <p>Modal Não encontrada</p>
-                    
-                }
+                ) : (
+                    <p>Modal Não encontrada</p>
+                )}
             </div>
         </div>
-    )
+    );
 }
