@@ -12,7 +12,9 @@ export default function TonerInfo() {
         Aqui será possível trabalhar com todos os formulários
         Vou deixar uma pequena lista de "modalName" e para qual formulário ela leva
         =============================
-        registerToner - Formulário de Cadastro de Suprimentos
+        registerToner - Formulário de Cadastro de Toner
+        registerCilindro - Formulário de Cadastro de Cilindro
+        registerTinta - Formulário de Cadastro de Tinta
         registerUser - Formulário de Cadastro de Usuários
         registerMarca - Formulário de Cadastro de Marca
         =============================

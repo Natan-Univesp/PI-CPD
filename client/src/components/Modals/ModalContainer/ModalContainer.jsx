@@ -8,7 +8,9 @@ import { IoClose as IconClose } from "react-icons/io5";
 import { useModal } from "../../../Context/ModalContext";
 
 //Componentes
-import { ModalRegisterToner } from "../ModalRegisterToner/ModalRegisterToner";
+import { ModalRegisterToner } from "../Toner/ModalRegisterToner/ModalRegisterToner";
+import { ModalRegisterCilindro } from "../Cilindro/ModalRegisterCilindro/ModalRegisterCilindro";
+import { ModalRegisterTinta } from "../Tinta/ModalRegisterTinta/ModalRegisterTinta";
 import { ModalRegisterUser } from "../ModalRegisterUser/ModalRegisterUser";
 import { ModalRegisterMarca } from "../ModalRegisterMarca/ModalRegisterMarca";
 
@@ -22,6 +24,16 @@ export default function ModalContainer() {
             name: "registerToner",
             title: "Cadastro de Novo Toner",
             modalContent: <ModalRegisterToner />,
+        },
+        {
+            name: "registerCilindro",
+            title: "Cadastro de Novo Cilindro",
+            modalContent: <ModalRegisterCilindro/>
+        },
+        {
+            name: "registerTinta",
+            title: "Cadastro de Nova Tinta",
+            modalContent: <ModalRegisterTinta/>
         },
         {
             name: "registerUser",
