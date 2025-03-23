@@ -2,6 +2,10 @@ import { useOutletContext } from "react-router-dom";
 import { useEffect } from "react";
 import { useModal } from "../../Context/ModalContext";
 
+//Componentes
+import {SearchBar} from "../SearchBar/SearchBar";
+import { FilterSupplyButton } from "../FilterSupplyButton/FilterSupplyButton";
+
 export default function CilindroInfo() {
     const {setTitle} = useOutletContext();
     const {showModal} = useModal();
@@ -12,7 +16,15 @@ export default function CilindroInfo() {
     }, [])
 
     return(
-        <p>Conteúdo de Cilindro</p>
+        <>
+            <h2 className="subTitle">Consulta de Suprimentos</h2>
+            <SearchBar/>
+            <div>
+                <FilterSupplyButton/>
+                <FilterSupplyButton/>
+                <FilterSupplyButton/>
+            </div>
+        </>
 
     )
 }

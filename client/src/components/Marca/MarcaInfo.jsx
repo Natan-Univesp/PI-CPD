@@ -1,5 +1,10 @@
+import { CardAction } from "../Cards/CardAction/CardAction";
+
 export function MarcaInfo() {
     return(
-        <h1>Texto</h1>
+        <>
+            <h2 className="subTitle">Ações</h2>
+            <CardAction/>
+        </>
     )
 }
