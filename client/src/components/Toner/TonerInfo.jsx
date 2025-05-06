@@ -6,11 +6,28 @@ import { useModal } from "../../Context/ModalContext";
 
 export default function TonerInfo() {
     const {setTitle} = useOutletContext();
-    const {showModal} = useModal();
+    const { showModal } = useModal();
+
+    /*
+        Aqui será possível trabalhar com todos os formulários
+        Vou deixar uma pequena lista de "modalName" e para qual formulário ela leva
+        =============================
+        registerToner - Formulário de Cadastro de Toner
+        registerCilindro - Formulário de Cadastro de Cilindro
+        registerTinta - Formulário de Cadastro de Tinta
+        registerUser - Formulário de Cadastro de Usuários
+        registerMarca - Formulário de Cadastro de Marca
+        =============================
+
+        Para trocar a exibição de cada formulário 
+        basta substituir o "registerToner" abaixo por um dos informados acima
+
+    */
 
     //Definição de título
     useEffect(() => {
         setTitle("Toners");
+        showModal({modalName: "registerToner", customStyle: {overflow: "initial"}})
     }, [])
 
 
