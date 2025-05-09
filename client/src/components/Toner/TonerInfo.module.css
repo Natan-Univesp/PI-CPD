@@ -84,7 +84,7 @@ body {
 
 }
 
-/* .cardContainer {
+.cardContainer {
   position: relative;
   background-color: #000000;
   color: #ffffff;
@@ -167,4 +167,4 @@ body {
 .cardContainer:hover .card-back-text {
   opacity: 1;
   transform: translate(-50%, -20px);
-} */
+}

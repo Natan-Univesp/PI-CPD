@@ -1,7 +1,6 @@
 import { useOutletContext } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useModal } from '../../Context/ModalContext';
-import { IoMdAddCircleOutline } from 'react-icons/io';
 import styles from './TonerInfo.module.css';
 
 import HpLogo from './../../assets/img/hp-logo.svg';
@@ -10,6 +9,7 @@ import CanonLogo from './../../assets/img/canon-logo.svg';
 import EpsonLogo from './../../assets/img/epson-logo.svg';
 import LexMarkLogo from './../../assets/img/lexmark-logo.svg';
 import SamsungLogo from './../../assets/img/samsung-logo.svg';
+import Toner from './Toner';
 
 export default function TonerInfo() {
   const { setTitle } = useOutletContext();
@@ -44,149 +44,71 @@ export default function TonerInfo() {
     <>
       <h2 className={`${styles.subTitle}`}>SubTítulo de Toners</h2>
 
-      <div className={`${styles.tonner}`}>
-        <div className={`${styles.actions}`}>
-          <button className={`${styles.btnEditar}`}>EDITAR</button>
-          <button className={`${styles.btnExcluir}`}>EXCLUIR</button>
-        </div>
-        <img src={HpLogo} alt='Logo da HP' className={`${styles.logo}`} />
-        <h2>Toner:</h2>
-        <p>Compatível com impressoras HP dos seguintes modelos:</p>
-        <ul className={`${styles.modelos}`}>
-          <li>Modelo 1</li>
-          <li>Modelo 2</li>
-          <li>Modelo 3</li>
-          <li>Modelo 4</li>
-          <li>Modelo 5</li>
-          <li>Modelo 6</li>
-          <li>Modelo 7</li>
-        </ul>
-        <p className={`${styles.disponibilidade}`}>Disponível: X</p>
-      </div>
+      <Toner
+        buttonLabel={'Editar'}
+        button={'Excluir'}
+        img={HpLogo}
+        alt={'Logo da HP'}
+        title={'Toner'}
+        text={'Compatível com impressoras HP dos seguintes modelos: '}
+        list={['Modelo 1', 'Modelo 2', 'Modelo 3', 'Modelo 4', 'Modelo 5']}
+        availability={'Disponível: X'}
+      />
 
-      <div className={`${styles.tonner}`}>
-        <div className={`${styles.actions}`}>
-          <button className={`${styles.btnEditar}`}>EDITAR</button>
-          <button className={`${styles.btnExcluir}`}>EXCLUIR</button>
-        </div>
-        <img
-          src={BrotherLogo}
-          alt='Logo da BROTHER'
-          className={`${styles.logo}`}
-        />
-        <h2>Toner:</h2>
-        <p>Compatível com impressoras BROTHER dos seguintes modelos:</p>
-        <ul className={`${styles.modelos}`}>
-          <li>Modelo 1</li>
-          <li>Modelo 2</li>
-          <li>Modelo 3</li>
-          <li>Modelo 4</li>
-          <li>Modelo 5</li>
-          <li>Modelo 6</li>
-          <li>Modelo 7</li>
-        </ul>
-        <p className={`${styles.disponibilidade}`}>Disponível: X</p>
-      </div>
+      <Toner
+        buttonLabel={'Editar'}
+        button={'Excluir'}
+        img={BrotherLogo}
+        alt={'Logo da Brother'}
+        title={'Toner'}
+        text={'Compatível com impressoras BROTHER dos seguintes modelos: '}
+        list={['Modelo 1', 'Modelo 2', 'Modelo 3', 'Modelo 4', 'Modelo 5']}
+        availability={'Disponível: X'}
+      />
 
-      <div className={`${styles.tonner}`}>
-        <div className={`${styles.actions}`}>
-          <button className={`${styles.btnEditar}`}>EDITAR</button>
-          <button className={`${styles.btnExcluir}`}>EXCLUIR</button>
-        </div>
-        <img src={CanonLogo} alt='Logo da CANON' className={`${styles.logo}`} />
-        <h2>Toner:</h2>
-        <p>Compatível com impressoras CANON dos seguintes modelos:</p>
-        <ul className={`${styles.modelos}`}>
-          <li>Modelo 1</li>
-          <li>Modelo 2</li>
-          <li>Modelo 3</li>
-          <li>Modelo 4</li>
-          <li>Modelo 5</li>
-          <li>Modelo 6</li>
-          <li>Modelo 7</li>
-        </ul>
-        <p className={`${styles.disponibilidade}`}>Disponível: X</p>
-      </div>
+      <Toner
+        buttonLabel={'Editar'}
+        button={'Excluir'}
+        img={CanonLogo}
+        alt={'Logo da Canon'}
+        title={'Toner'}
+        text={'Compatível com impressoras CANON dos seguintes modelos: '}
+        list={['Modelo 1', 'Modelo 2', 'Modelo 3', 'Modelo 4', 'Modelo 5']}
+        availability={'Disponível: X'}
+      />
 
-      <div className={`${styles.tonner}`}>
-        <div className={`${styles.actions}`}>
-          <button className={`${styles.btnEditar}`}>EDITAR</button>
-          <button className={`${styles.btnExcluir}`}>EXCLUIR</button>
-        </div>
-        <img src={EpsonLogo} alt='Logo da EPSON' className={`${styles.logo}`} />
-        <h2>Toner:</h2>
-        <p>Compatível com impressoras EPSON dos seguintes modelos:</p>
-        <ul className={`${styles.modelos}`}>
-          <li>Modelo 1</li>
-          <li>Modelo 2</li>
-          <li>Modelo 3</li>
-          <li>Modelo 4</li>
-          <li>Modelo 5</li>
-          <li>Modelo 6</li>
-          <li>Modelo 7</li>
-        </ul>
-        <p className={`${styles.disponibilidade}`}>Disponível: X</p>
-      </div>
+      <Toner
+        buttonLabel={'Editar'}
+        button={'Excluir'}
+        img={EpsonLogo}
+        alt={'Epson logo'}
+        title={'Toner'}
+        text={'Compatível com impressoras EPSON dos seguintes modelos: '}
+        list={['Modelo 1', 'Modelo 2', 'Modelo 3', 'Modelo 4', 'Modelo 5']}
+        availability={'Disponível: X'}
+      />
 
-      <div className={`${styles.tonner}`}>
-        <div className={`${styles.actions}`}>
-          <button className={`${styles.btnEditar}`}>EDITAR</button>
-          <button className={`${styles.btnExcluir}`}>EXCLUIR</button>
-        </div>
-        <img
-          src={LexMarkLogo}
-          alt='Logo da LEXMARK'
-          className={`${styles.logo}`}
-        />
-        <h2>Toner:</h2>
-        <p>Compatível com impressoras LEXMARK dos seguintes modelos:</p>
-        <ul className={`${styles.modelos}`}>
-          <li>Modelo 1</li>
-          <li>Modelo 2</li>
-          <li>Modelo 3</li>
-          <li>Modelo 4</li>
-          <li>Modelo 5</li>
-          <li>Modelo 6</li>
-          <li>Modelo 7</li>
-        </ul>
-        <p className={`${styles.disponibilidade}`}>Disponível: X</p>
-      </div>
+      <Toner
+        buttonLabel={'Editar'}
+        button={'Excluir'}
+        img={LexMarkLogo}
+        alt={'Logo da LexMark'}
+        title={'Toner'}
+        text={'Compatível com impressoras LEXMARK dos seguintes modelos: '}
+        list={['Modelo 1', 'Modelo 2', 'Modelo 3', 'Modelo 4', 'Modelo 5']}
+        availability={'Disponível: X'}
+      />
 
-      <div className={`${styles.tonner}`}>
-        <div className={`${styles.actions}`}>
-          <button className={`${styles.btnEditar}`}>EDITAR</button>
-          <button className={`${styles.btnExcluir}`}>EXCLUIR</button>
-        </div>
-        <img
-          src={SamsungLogo}
-          alt='Logo da SAMSUNG'
-          className={`${styles.logo}`}
-        />
-        <h2>Toner:</h2>
-        <p>Compatível com impressoras SAMSUNG dos seguintes modelos:</p>
-        <ul className={`${styles.modelos}`}>
-          <li>Modelo 1</li>
-          <li>Modelo 2</li>
-          <li>Modelo 3</li>
-          <li>Modelo 4</li>
-          <li>Modelo 5</li>
-          <li>Modelo 6</li>
-          <li>Modelo 7</li>
-        </ul>
-        <p className={`${styles.disponibilidade}`}>Disponível: X</p>
-      </div>
-
-      {/* <div className={`${styles.cardContainer}`} data-text='adicionar toners'>
-            <label className={`${styles.cardBackText}`} name='addToner'>
-            Adicionar Toners
-            </label>
-            <div className={`${styles.cardIcon}`}>
-            <button className={`${styles.cardFront}`} name='addToner'>
-                <p className={`${styles.cardTitle}`}>ADICIONAR</p>
-                <IoMdAddCircleOutline />
-            </button>
-            </div>
-        </div> */}
+      <Toner
+        buttonLabel={'Editar'}
+        button={'Excluir'}
+        img={SamsungLogo}
+        alt={'Logo da Samsung'}
+        title={'Toner'}
+        text={'Compatível com impressoras SAMSUNG dos seguintes modelos: '}
+        list={['Modelo 1', 'Modelo 2', 'Modelo 3', 'Modelo 4', 'Modelo 5']}
+        availability={'Disponível: X'}
+      />
     </>
   );
 }
