@@ -1,12 +1,46 @@
-//Assim eu faço a exportação do meu arquivo CSS
-//OBS: todos os "componentes" devem ter o seu css único seguindo a estrutura de "nome.module.css"
-// a aplicação da estilização com classes estão indicadas no exemplo abaixo (é um pouco diferente do HTML e CSS padrão)
-import styles from "./CardMarca.module.css";
+import Card from '../Card/Card';
+
+import HPLogo from './../../../assets/img/hp-logo.svg';
+import BrotherLogo from './../../../assets/img/brother-logo.svg';
+import CanonLogo from './../../../assets/img/canon-logo.svg';
+import EpsonLogo from './../../../assets/img/epson-logo.svg';
+import LexmarkLogo from './../../../assets/img/lexmark-logo.svg';
+import SamsungLogo from './../../../assets/img/samsung-logo.svg';
 
 export function CardMarca() {
-    return(
-        <>
-            <p className={styles.example}>Aqui será o local onde poderá ser adicionado todo o html de estruturação do Card de Ação</p>
-        </>
-    )
+  return (
+    <>
+      <Card image={HPLogo} alt='Logo da HP' buttonLabel='EDITAR' label='HP' />
+      <Card
+        image={BrotherLogo}
+        alt='Logo da Brother'
+        buttonLabel='EDITAR'
+        label='Brother'
+      />
+      <Card
+        image={CanonLogo}
+        alt='Logo da Canon'
+        buttonLabel='EDITAR'
+        label='Canon'
+      />
+      <Card
+        image={EpsonLogo}
+        alt='Logo da Epson'
+        buttonLabel='EDITAR'
+        label='Epson'
+      />
+      <Card
+        image={LexmarkLogo}
+        alt='Logo da Lexmark'
+        buttonLabel='EDITAR'
+        label='Lexmark'
+      />
+      <Card
+        image={SamsungLogo}
+        alt='Logo da Samsung'
+        buttonLabel='EDITAR'
+        label='Samsung'
+      />
+    </>
+  );
 }
