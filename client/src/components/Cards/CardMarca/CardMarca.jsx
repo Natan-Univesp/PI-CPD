@@ -1,69 +1,46 @@
-import styles from './CardMarca.module.css';
+import Card from '../Card/Card';
+
+import HPLogo from './../../../assets/img/hp-logo.svg';
+import BrotherLogo from './../../../assets/img/brother-logo.svg';
+import CanonLogo from './../../../assets/img/canon-logo.svg';
+import EpsonLogo from './../../../assets/img/epson-logo.svg';
+import LexmarkLogo from './../../../assets/img/lexmark-logo.svg';
+import SamsungLogo from './../../../assets/img/samsung-logo.svg';
 
 export function CardMarca() {
   return (
-    <section>
-      <div className={`${styles.container}`}>
-        <div className={`${styles.card}`}>
-          <button className={`${styles.btnEditarMarca}`}>EDITAR</button>
-          <img src='../assets/img/hp-logo.svg' alt='Logo da HP' />
-          <h2>HP</h2>
-          <p>
-            Suprimentos Cadastrados:{' '}
-            <span className={`${styles.suprimentos}`}>0</span>
-          </p>
-        </div>
-
-        <div className={`${styles.card}`}>
-          <button className={`${styles.btnEditarMarca}`}>EDITAR</button>
-          <img src='assets/img/brother-logo.svg' alt='Logo da Brother' />
-          <h2>BROTHER</h2>
-          <p>
-            Suprimentos Cadastrados:{' '}
-            <span className={`${styles.suprimentos}`}>0</span>
-          </p>
-        </div>
-
-        <div className={`${styles.card}`}>
-          <button className={`${styles.btnEditarMarca}`}>EDITAR</button>
-          <img src='assets/img/canon-logo.svg' alt='Logo da Canon' />
-          <h2>CANON</h2>
-          <p>
-            Suprimentos Cadastrados:{' '}
-            <span className={`${styles.suprimentos}`}>0</span>
-          </p>
-        </div>
-
-        <div className={`${styles.card}`}>
-          <button className={`${styles.btnEditarMarca}`}>EDITAR</button>
-          <img src='assets/img/epson-logo.svg' alt='Logo da Epson' />
-          <h2>EPSON</h2>
-          <p>
-            Suprimentos Cadastrados:{' '}
-            <span className={`${styles.suprimentos}`}>0</span>
-          </p>
-        </div>
-
-        <div className={`${styles.card}`}>
-          <button className={`${styles.btnEditarMarca}`}>EDITAR</button>
-          <img src='assets/img/lexmark-logo.svg' alt='Logo da Lexmark' />
-          <h2>LEXMARK</h2>
-          <p>
-            Suprimentos Cadastrados:{' '}
-            <span className={`${styles.suprimentos}`}>0</span>
-          </p>
-        </div>
-
-        <div className={`${styles.card}`}>
-          <button className={`${styles.btnEditarMarca}`}>EDITAR</button>
-          <img src='./assets/samsung-logo.svg' alt='Logo da Samsung' />
-          <h2>SAMSUNG</h2>
-          <p>
-            Suprimentos Cadastrados:{' '}
-            <span className={`${styles.suprimentos}`}>0</span>
-          </p>
-        </div>
-      </div>
-    </section>
+    <>
+      <Card image={HPLogo} alt='Logo da HP' buttonLabel='EDITAR' label='HP' />
+      <Card
+        image={BrotherLogo}
+        alt='Logo da Brother'
+        buttonLabel='EDITAR'
+        label='Brother'
+      />
+      <Card
+        image={CanonLogo}
+        alt='Logo da Canon'
+        buttonLabel='EDITAR'
+        label='Canon'
+      />
+      <Card
+        image={EpsonLogo}
+        alt='Logo da Epson'
+        buttonLabel='EDITAR'
+        label='Epson'
+      />
+      <Card
+        image={LexmarkLogo}
+        alt='Logo da Lexmark'
+        buttonLabel='EDITAR'
+        label='Lexmark'
+      />
+      <Card
+        image={SamsungLogo}
+        alt='Logo da Samsung'
+        buttonLabel='EDITAR'
+        label='Samsung'
+      />
+    </>
   );
 }
