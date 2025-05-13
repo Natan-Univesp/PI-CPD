@@ -7,7 +7,7 @@ import TBody from "../TableComponents/TBody/TBody";
 //Estilizações
 import '../../../assets/css/Table.css';
 
-export default function TableDefault({title = "", fieldCollection = [], dataCollection = [], btnCollection = [], isModalChildren = false}) {
+export default function TableDefault({title = "", fieldCollection = [], dataCollection = [], btnCollection = [], isModalChildren = false, customInfo = {}}) {
 
     return(
         <>
@@ -18,9 +18,11 @@ export default function TableDefault({title = "", fieldCollection = [], dataColl
                             <THeadGeneral title={title} fieldCollection={fieldCollection} hasActionBtn={btnCollection.length > 0}/>
                         </thead>
                         <tbody>
-                            {dataCollection.map(data => <TBody key={data._id} 
-                                                                dataInfo={data} 
-                                                                btnInfoCollection={btnCollection}/>)}
+                            {dataCollection.map((row, index) => <TBody key={index} 
+                                                                dataInfo={row} 
+                                                                btnInfoCollection={btnCollection}
+                                                                customInfo={customInfo}
+                                                                fieldCollection={fieldCollection}/>)}
                         </tbody>
                     </table>
                 </div>

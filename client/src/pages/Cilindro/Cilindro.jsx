@@ -22,6 +22,7 @@ export default function Cilindro() {
       link: 'report',
       text: 'Relatório de Cilindros',
     },
+    
   ];
   const infoBoxExtra = [
     {
@@ -62,3 +63,11 @@ export default function Cilindro() {
     </>
   );
 }
+
+
+
+
+
+
+
+

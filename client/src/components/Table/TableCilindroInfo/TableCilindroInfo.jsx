@@ -2,9 +2,10 @@ import TableDefault from "../TableDefault/TableDefault";
 
 //Como Utilizar Ícones
 import { FaEdit as IconEdit } from "react-icons/fa";
+import { FaTrash as IconDelete } from "react-icons/fa";
 
-export function TableExample() {
-    const fieldNamecollection = ["Coluna 1", "Coluna 2"];
+export function TableCilindroInfo() {
+    const fieldNamecollection = ["Modelo", "Marca", "Impressoras Compatíveis", "Quantidade"];
 
 
     /* 
@@ -17,24 +18,42 @@ export function TableExample() {
         {
             id: 1,
             infoView: <IconEdit/>,
-            handleAction: () => console.log("Aqui vai uma função. Pode deixar assim para os outros"),
-            className: "acceptBtn" 
+            handleAction: (item) => console.log("editar", item),
+            className: "editBtn" 
+        },
+        {
+            id: 2,
+            infoView: <IconDelete />,
+            handleAction: (item) => console.log("Excluir", item),
+            className: "delBtn"
         }
-    ]
+    ]; 
 
     // Para as próximas tabelas, se quiser, pode utilizar essa coleção como base
     const exDataCollection = [
         {
             id: 1,
-            nome: "Claudio",
-            sobrenome: "Pereira"
+            modelo: "ABC",
+            marca: "ALFA",
+            impressorasCompatíveis: "BETA",
+            quantidade: 1,
+            
         },
         {
             id: 2,
-            nome: "Marcus Vinicius",
-            sobrenome: "Rodrigues"
+            modelo: "DEF",
+            marca: "BETA",
+            impressorasCompatíveis: "ALFA",
+            quantidade: 1
+        },
+        {
+            id: 3,
+            modelo: "GHI",
+            marca: "GAMA",
+            impressorasCompatíveis: "ALFA",
+            quantidade: 1 
         }
-    ]
+    ]; 
 
     /* 
         Explicando cada informação da Table:
