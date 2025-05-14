@@ -4,16 +4,29 @@ import ButtonTable from "../../ButtonTable/ButtonTable";
 
 //Icones
 import { FaTrash as IconReturn } from "react-icons/fa";
+import { useAlert } from "../../../../Context/AlertContext";
+import { deleteSupplyRequestService } from "../../../../services/requestSupply.service";
+import { useSolicitacao } from "../../../../Context/SolicitacaoContext";
+import { useModal } from "../../../../Context/ModalContext";
+import { useInfoExtra } from "../../../../Context/InfoExtraContext";
 
-export default function TBodyRequest({ dataInfo }) {
+export default function TBodyRequest({ dataInfo, solicitacaoInfo }) {
+    const { 
+        showSuccessAlert, 
+        showConfirmAlert, 
+        showErrorAlert } = useAlert();
+    const { showModal } = useModal(); 
+    const { getAllSolicitacoes } = useSolicitacao();
+    const { getAllHomePageStats } = useInfoExtra();
 
-    const handleSetStatusClass = (status) => {
+    const handleSetStatusClass = (statusRef) => {
+        const status = statusRef.toUpperCase();
         let statusClass;
         switch (status) {
-            case "disponivel":
+            case "DISPONIVEL":
                 statusClass = "success";
                 break;
-            case "indisponivel":
+            case "INDISPONIVEL":
                 statusClass = "unSuccessful";
                 break;
             default:
@@ -23,13 +36,14 @@ export default function TBodyRequest({ dataInfo }) {
         return statusClass;
     };
 
-    const handleSetstatusText = (status) => {
+    const handleSetstatusText = (statusRef) => {
+        const status = statusRef.toUpperCase();
         let statusText;
         switch (status) {
-            case "disponivel":
+            case "DISPONIVEL":
                 statusText = "Pronto para a retirada";
                 break;
-            case "indisponivel":
+            case "INDISPONIVEL":
                 statusText = "Não disponível no estoque";
                 break;
             default:
@@ -38,6 +52,49 @@ export default function TBodyRequest({ dataInfo }) {
         }
         return statusText;
     };
+
+    const deleteSupply = async (supplyId) => {
+        try {
+            const res = await deleteSupplyRequestService(supplyId);
+            const { status } = res.data;
+            if(status === "success") {
+                showSuccessAlert({
+                    title: "Solicitação de Suprimento deletada",
+                })
+                await getAllSolicitacoes();
+                await getAllHomePageStats();
+            }
+
+        } catch (error) {
+            console.log(error);
+            if(error?.response?.data) {
+                showErrorAlert({
+                    title: "Erro ao deletar Suprimento",
+                    
+                })
+            }
+        }
+    }
+
+    const handleRetiradaSupply = () => {
+        showModal({
+            modalName: "confirmRetiradaSupply",
+            data: {
+                supplies: dataInfo ,
+                solicitacao: solicitacaoInfo,
+                getAllSolicitacoes
+            }
+        })
+    }
+
+    const handleConfirmDelete = async () => {
+        const id = dataInfo.id;
+        await showConfirmAlert({
+            title: "Remover Suprimento Solicitado",
+            message: "Você tem certeza que deseja remover o suprimento solicitado?",
+            handleConfirm: async () => await deleteSupply(id)
+        })
+    }
 
     return (
         <tr id={dataInfo._id}>
@@ -51,29 +108,26 @@ export default function TBodyRequest({ dataInfo }) {
                         </td>
                     );
                 }
-                if (key !== "_id" && key !== "id") {
-                    return (
-                        <TCell
-                            key={index}
-                            indexValue={index}
-                            fieldName={key}
-                            fieldValue={value}
-                        />
-                    );
-                }
+                return (
+                    <TCell
+                        key={index}
+                        indexValue={index}
+                        fieldValue={value}
+                    />
+                );
             })}
             <td className={"tableContent__btns"}>
                 <ButtonTable
                     infoView={"Retirar Suprimento"}
                     classBtn={
-                        dataInfo.status === "indisponivel" ? "inactiveBtn" : "acceptBtn"
+                        dataInfo.status.toUpperCase() === "INDISPONIVEL" ? "inactiveBtn" : "acceptBtn"
                     }
-                    handleAction={() => "Produto Retirado"}
+                    handleAction={handleRetiradaSupply}
                 />
                 <ButtonTable
                     infoView={<IconReturn />}
                     classBtn={"delBtn"}
-                    handleAction={() => "Produto Retornado"}
+                    handleAction={handleConfirmDelete}
                 />
             </td>
         </tr>
@@ -82,4 +136,5 @@ export default function TBodyRequest({ dataInfo }) {
 
 TBodyRequest.propTypes = {
     dataInfo: PropTypes.object,
+    solicitacaoInfo: PropTypes.object
 };

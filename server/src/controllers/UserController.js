@@ -177,7 +177,8 @@ async function changeStatusUser(req, res) {
                      Edição efetiva
       =============================================
       */
-      const { idUser, status } = req.body;
+      const idUser = Number(req.params.idUser);
+      const { status } = req.body;
 
       if(!idUser || !status) {
          throw new FieldUndefinedError("Um ou mais campos não foram passados", {
@@ -191,11 +192,9 @@ async function changeStatusUser(req, res) {
       const [rowAffected] = await changeStatusUserService(idUser, status);
 
       if(rowAffected > 0) {
-         const newUserData = await getUserByIdService(idUser);
          return res.status(200).json({
             status: "success",
             message: "Status de usuário alterado com sucesso!",
-            data: newUserData
          })
       }
 

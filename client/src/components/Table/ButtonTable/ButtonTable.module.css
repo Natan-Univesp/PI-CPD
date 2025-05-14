@@ -1,11 +1,10 @@
 button.btnTable:hover { opacity: 0.8; }
 
-button.editBtn { background-color: var(--colorSec); }
+button:is(.acceptBtn, .editBtn) { background-color: var(--colorSec); }
 
 button.delBtn { background-color: var(--colorRed); }
 
-button.restoreBtn { background-color: var(--colorYellow);
-                    color: white; }
+button.restoreBtn { background-color: var(--colorYellow); }
 
 button.subBtn {
     background-color: var(--colorBright);

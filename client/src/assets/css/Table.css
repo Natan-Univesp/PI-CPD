@@ -43,8 +43,6 @@ table {
     border: none;
     /* Deixar todo conteudo dentro da tabela, mantendo as bordas*/
     overflow: hidden;
-    border-collapse: collapse;
-    table-layout: fixed; /* Faz todas as colunas terem largura igual */
 }
 
 table thead tr:not(.tableHeader, .tableTitle) {
@@ -145,9 +143,6 @@ table thead tr th.tableContent__actionTitle {
 
 table th, table td {
     padding: 10px 15px;
-    text-align: center;     /* Centraliza o texto */
-    vertical-align: middle; /* Alinha verticalmente ao centro */
-    word-wrap: break-word;  /* Quebra palavras longas */
 
 }
 
@@ -167,6 +162,11 @@ table tbody td {
     font-family: var(--fontSec);
 }
 
+table tbody td.passwordField div{
+    display: flex;
+    align-items: center;
+}
+
 table tbody tr:nth-child(even) {
     background-color: #fdfdfd;
 }
@@ -181,6 +181,11 @@ table tbody td input {
     padding: 5px 10px;
     border-radius: var(--borderRadiusFix);
     transition: .2s ease;
+}
+
+table tbody td.passwordField input {
+    width: 200px;
+    background-color: transparent;
 }
 
 table tbody td input:read-only {
@@ -223,12 +228,19 @@ td.tableContent__customField p {
 .tableContent__btns {
     display: flex;
     justify-content: center;
-    gap: 8px;
 }
 
 .tableContent__btns button {
     padding: 10px;
     margin: 0 5px;
+}
+
+
+
+@media only screen and (max-width: 767px) {
+    .tableContainer {
+        margin: var(--marginContent) 0;
+    }
 }
 
 

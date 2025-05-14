@@ -34,3 +34,26 @@
 .inputContainer input::placeholder {
     opacity: .3;
 }
+
+/* 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            Estilização do Input Error
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+.inputError label {
+    color: var(--colorRed)!important;
+    font-weight: 700!important;
+}
+
+.inputError input {
+    border: 1px solid var(--colorRed)!important;
+    color: var(--colorRed)!important;
+}
+
+.inputError span.errorMessage {
+    opacity: 1;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--colorRed);
+    user-select: none;
+}

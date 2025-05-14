@@ -1,3 +1,4 @@
+const CannotUpdateError = require("../classes/CannotUpdateError");
 const ExistsDataError = require("../classes/ExistsDataError");
 const NotFoundError = require("../classes/NotFoundError");
 const {
@@ -126,6 +127,29 @@ async function incrementCilindroService(id, qtd_increment) {
 
 
 
+async function decrementCilindroService(modelo, qtd_decrement) {
+   const existsCilindro = await findCilindroByModelo(modelo.toUpperCase());
+
+   if(!existsCilindro) {
+      throw new NotFoundError("Toner não encontrado", {
+         modelo_passado: modelo
+      })
+   }
+   let { qtd } = existsCilindro;
+   qtd -= qtd_decrement;
+
+   if(qtd < 0) {
+      throw new CannotUpdateError("Não foi possível remover o Cilindro do estoque", {
+         qtd: qtd
+      })
+   } 
+
+   const updatedCilindro = await updateCilindro(existsCilindro.id, { qtd });
+   return updatedCilindro;
+}
+
+
+
 async function changeSituacaoCilindroService(id, situacao) {
    const existsCilindro = await findCilindroById(id);
 
@@ -153,6 +177,7 @@ module.exports = {
    getCilindroByMarcaIdService, 
    createCilindroService, 
    updateCilindroService, 
-   incrementCilindroService ,
+   incrementCilindroService,
+   decrementCilindroService,
    changeSituacaoCilindroService
 }

@@ -1,0 +1,62 @@
+.card {
+    position: relative;
+    background-color: white;
+    border-radius: var(--borderRadiusFix);
+    box-shadow: var(--shadowBox);
+    padding: 15px;
+    width: 250px;
+    height: 320px;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s ease;
+    text-align: center;
+    cursor: pointer;
+}
+
+.card:hover {
+    box-shadow: 0px 0px 15px 8px rgb(135 135 135 / 10%);
+
+}
+
+/* Estilo para as imagens dentro dos cards */
+.card img {
+    width: 180px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.card img {
+    width: 180px;
+    height: auto;
+}
+
+.btnEditarMarca {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: var(--colorSec);
+    border: 1px solid var(--colorSec);
+    color: var(--colorAux);
+    border-radius: var(--borderRadiusFix);
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+}
+
+.btnEditarMarca:hover {
+    background-color: var(--colorAux);
+    color: var(--colorSec);
+
+}
+
+.card h4 {
+    font-size: 20px;
+    text-align: center;
+    margin: 10px 0
+}

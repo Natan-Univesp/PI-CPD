@@ -1,3 +1,4 @@
+const CannotUpdateError = require("../classes/CannotUpdateError");
 const ExistsDataError = require("../classes/ExistsDataError");
 const NotFoundError = require("../classes/NotFoundError");
 const { findMarcaById } = require("../repositories/MarcaRepository");
@@ -126,6 +127,29 @@ async function incrementTintaService(id, qtd_increment) {
 
 
 
+async function decrementTintaService(modelo, qtd_decrement) {
+   const existsTinta = await findTintaByModelo(modelo.toUpperCase());
+
+   if(!existsTinta) {
+      throw new NotFoundError("Tinta não encontrado", {
+         modelo_passado: modelo,
+      });
+   }
+   let { qtd } = existsTinta;
+   qtd -= qtd_decrement;
+
+   if(qtd < 0) {
+      throw new CannotUpdateError("Não foi possível remover a Tinta do estoque", {
+         qtd: qtd
+      })
+   }
+
+   const updatedTinta = await updateTinta(existsTinta.id, { qtd });
+   return updatedTinta;
+}
+
+
+
 async function changeSituacaoTintaService(id, situacao) {
    const existsTinta = await findTintaById(id);
 
@@ -154,5 +178,6 @@ module.exports = {
    createTintaService, 
    updateTintaService, 
    incrementTintaService,
+   decrementTintaService,
    changeSituacaoTintaService
 }

@@ -129,18 +129,23 @@ async function incrementTonerService(id, qtd_increment) {
    return updatedToner;
 }
 
-async function moveTonerToTrashService(id) {
-   const existsToners = await findTonerById(id);
-   const situacao = "INATIVO";
 
-   if(!existsToners) {
+
+async function decrementTonerService(modelo, qtd_decrement) {
+   const existsToner = await findTonerByModelo(modelo);
+
+   if(!existsToner) {
       throw new NotFoundError("Toner não encontrado", {
-         id_passado: id
+         modelo_passado: modelo
       })
    }
-
-   const updatedToner = await updateToner(id, { situacao });
-   return updatedToner;
+   let { qtd } = existsToner;
+   qtd -= qtd_decrement;
+   
+   if(qtd >= 0) {
+      const updatedToner = await updateToner(existsToner.id, { qtd });
+      return updatedToner;
+   }
 
 }
 
@@ -174,5 +179,6 @@ module.exports = {
    createTonerService,
    updateTonerService,
    incrementTonerService,
+   decrementTonerService,
    changeSituacaoTonerService
 };

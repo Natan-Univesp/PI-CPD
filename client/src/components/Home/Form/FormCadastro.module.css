@@ -1,4 +1,4 @@
-form h3 {
+form.requestSupplyContainer h3 {
     margin-bottom: 10px;
     font-weight: 600;
     color: var(--colorSec);
@@ -7,13 +7,13 @@ form h3 {
 }
 
 
-form h3.titleBoxProd {
+form.requestSupplyContainer h3.titleBoxProd {
     margin: 0;
     margin-top: 20px;
 }
 
 /* Personalização do FieldSet (separa os conteúdos) */
-form fieldset {
+form.requestSupplyContainer fieldset {
     display: grid;
     gap: 20px;
     border: 2px solid var(--colorPrim);
@@ -24,15 +24,15 @@ form fieldset {
 }
 
 /* Altera a cor da borda do FIELDSET quando houver qualquer interação com os inputs internos */
-form fieldset:has(:is(input:not([type=checkbox]), select):is(:active, :focus, :valid), :is(.option__collection, .inputCheck__collection) input:checked) {
+form.requestSupplyContainer fieldset:has(input:not([type=checkbox], select):is(:active, :focus, :valid), :is(.option__collection, .inputCheck__collection) input:checked) {
     border-color: var(--colorSec);
 }
 
-form fieldset:not(:first-child) {
+form.requestSupplyContainer fieldset:not(:first-child) {
     margin: 3em 0;
 }
 
-form fieldset legend {
+form.requestSupplyContainer fieldset legend {
     font-weight: 600;
     font-size: 18px;
     background-color: var(--colorSec);
@@ -45,18 +45,18 @@ form fieldset legend {
 Estilização GERAL das Coleções de Informações 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
-form fieldset .optionContainer {
+form.requestSupplyContainer fieldset .optionContainer {
     position: relative;
 
 }
 
-form fieldset .optionTitle {
+form.requestSupplyContainer fieldset .optionTitle {
     color: var(--colorSec);
     font-weight: 700;
 
 }
 
-form fieldset .option__collection { 
+form.requestSupplyContainer fieldset .option__collection { 
     width: fit-content;
     display: flex;
     align-items: center;
@@ -76,12 +76,12 @@ Estilização de Seleção de Suprimentos
     gap: 10px;
 }
 
-form .btnContainer {
+form.requestSupplyContainer .btnContainer {
     display: flex;
     justify-content: center;
 }
 
-form .btnContainer button{
+form.requestSupplyContainer .btnContainer button{
     font-size: 1.2em;
     margin: 20px;
     padding: 10px;
@@ -96,11 +96,28 @@ form .btnContainer button{
 
 }
 
-form .btnContainer button:hover {
+form.requestSupplyContainer .btnContainer button:hover {
     outline: 1px solid var(--colorSec);
     background-color: rgb(245, 245, 245);
     color: var(--colorSec);
 }
+
+
+
+/* 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Estilização de Erro
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+form.requestSupplyContainer fieldset.error {
+    border-color: var(--colorRed)!important;
+}
+
+form.requestSupplyContainer fieldset.error legend {
+    background-color: var(--colorRed);
+}
+
+
 
 @media only screen and (max-width: 575px) {
 

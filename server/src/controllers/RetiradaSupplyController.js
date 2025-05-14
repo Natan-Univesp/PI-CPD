@@ -15,6 +15,14 @@ async function getAllRetiradas(req, res) {
    }
 }
 
+
+/* 
+==================================================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+               consulta de retiradas de suprimentos
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+==================================================================
+*/
 async function getAllRetiradasToner(req, res) {
    try {
       const tonersRetirados = await getAllRetiradasTonerService();
@@ -45,6 +53,117 @@ async function getAllRetiradasTinta(req, res) {
    }
 }
 
+/* 
+==================================================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         consulta de retiradas de suprimentos com filtragem
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+==================================================================
+*/
+async function getAllRetiradasTonerByFilter(req, res) {
+   try {
+      const { orderBy, filterOptions } = req.query;
+
+      if(!orderBy && !filterOptions) {
+         throw new FieldUndefinedError("Um ou mais campos não identificados", {
+            fields: {
+               orderBy,
+               filterOptions
+            }
+         })
+      }
+      filterOptions.tipo_suprimento = "Toner";
+
+      const filteredRetirada = await getAllRetiradasByFilterWithOrderByService(orderBy, filterOptions);
+
+      if(!filteredRetirada) {
+         throw new NotFoundError("Nenhuma retirada encontrada", {
+            fields: {
+               orderBy,
+               filterOptions
+            },
+            data: filteredRetirada
+         })
+      }
+      return res.status(200).json(filteredRetirada);
+
+   } catch (error) {
+      errorResponse(error, res);
+   }
+}
+
+async function getAllRetiradasCilindroByFilter(req, res) {
+   try {
+      const { orderBy, filterOptions } = req.query;
+
+      if(!orderBy && !filterOptions) {
+         throw new FieldUndefinedError("Um ou mais campos não identificados", {
+            fields: {
+               orderBy,
+               filterOptions
+            }
+         })
+      }
+      filterOptions.tipo_suprimento = "Cilindro";
+
+      const filteredRetirada = await getAllRetiradasByFilterWithOrderByService(orderBy, filterOptions)
+
+      if(!filteredRetirada) {
+         throw new NotFoundError("Nenhuma retirada encontrada", {
+            fields: {
+               orderBy,
+               filterOptions
+            },
+            data: filteredRetirada
+         })
+      }
+      return res.status(200).json(filteredRetirada);
+
+   } catch (error) {
+      errorResponse(error, res);
+   }
+}
+
+async function getAllRetiradasTintaByFilter(req, res) {
+   try {
+      const { orderBy, filterOptions } = req.query;
+
+      if(!orderBy && !filterOptions) {
+         throw new FieldUndefinedError("Um ou mais campos não identificados", {
+            fields: {
+               orderBy,
+               filterOptions
+            }
+         })
+      }
+      filterOptions.tipo_suprimento = "Tinta";
+
+      const filteredRetirada = await getAllRetiradasByFilterWithOrderByService(orderBy, filterOptions)
+
+      if(!filteredRetirada) {
+         throw new NotFoundError("Nenhuma retirada encontrada", {
+            fields: {
+               orderBy,
+               filterOptions
+            },
+            data: filteredRetirada
+         })
+      }
+      return res.status(200).json(filteredRetirada);
+
+   } catch (error) {
+      errorResponse(error, res);
+   }
+}
+
+
+/* 
+==================================================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         consulta de retirada de suprimento por ID
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+==================================================================
+*/
 async function getRetiradaById(req, res) {
    try {
       const id = Number(req.params.id);
@@ -69,37 +188,6 @@ async function getRetiradaById(req, res) {
       }
 
       return res.status(200).json(retirada);
-
-   } catch (error) {
-      errorResponse(error, res);
-   }
-}
-
-async function getAllRetiradasByFilter(req, res) {
-   try {
-      const { orderBy, filterOptions } = req.body;
-
-      if(!orderBy && !filterOptions) {
-         throw new FieldUndefinedError("Um ou mais campos não identificados", {
-            fields: {
-               orderBy,
-               filterOptions
-            }
-         })
-      }
-
-      const filteredRetirada = await getAllRetiradasByFilterWithOrderByService(orderBy, filterOptions)
-
-      if(!filteredRetirada) {
-         throw new NotFoundError("Nenhuma retirada encontrada", {
-            fields: {
-               orderBy,
-               filterOptions
-            },
-            data: filteredRetirada
-         })
-      }
-      return res.status(200).json(filteredRetirada);
 
    } catch (error) {
       errorResponse(error, res);
@@ -193,7 +281,9 @@ module.exports = {
    getAllRetiradasToner,
    getAllRetiradasCilindro,
    getAllRetiradasTinta,
+   getAllRetiradasTonerByFilter,
+   getAllRetiradasCilindroByFilter,
+   getAllRetiradasTintaByFilter,
    getRetiradaById,
-   getAllRetiradasByFilter,
    createRetirada
 };

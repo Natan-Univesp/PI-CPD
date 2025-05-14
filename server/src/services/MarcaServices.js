@@ -1,4 +1,4 @@
-const { findAllMarcas, findMarcaById, findMarcaByName, createNewMarca, updateMarca, findAllMarcasForSelect } = require("../repositories/MarcaRepository");
+const { findAllMarcas, findMarcaById, findMarcaByName, createNewMarca, updateMarca, findAllMarcasForSelect, findAllMarcasWithTonersForSelect, findAllMarcasWithCilindrosForSelect, findAllMarcasWithTintasForSelect } = require("../repositories/MarcaRepository");
 // Helpers
 const deleteFile = require("../helper/DeleteFileHelper");
 // Utils
@@ -16,6 +16,57 @@ async function getAllMarcasService() {
 async function getAllMarcasForSelectService() {
    const marcas = await findAllMarcasForSelect();
    return marcas;
+}
+
+async function getAllMarcasWithTonersForSelectService() {
+   const marcasWithToners = await findAllMarcasWithTonersForSelect();
+   let formattedData = JSON.parse(JSON.stringify(marcasWithToners));
+
+   if(!Array.isArray(formattedData)) {
+      formattedData = Array(formattedData);
+   }
+
+   const renamedData = formattedData.map(item => (
+      {
+         label: item.label,
+         options: item.marca_toner
+      }
+   ))
+   return renamedData;
+}
+
+async function getAllMarcasWithCilindrosForSelectService() {
+   const marcasWithCilindros = await findAllMarcasWithCilindrosForSelect();
+   let formattedData = JSON.parse(JSON.stringify(marcasWithCilindros));
+
+   if(!Array.isArray(formattedData)) {
+      formattedData = Array(formattedData);
+   }
+
+   const renamedData = formattedData.map(item => (
+      {
+         label: item.label,
+         options: item.marca_cilindro
+      }
+   ))
+   return renamedData;
+}
+
+async function getAllMarcasWithTintasForSelectService() {
+   const marcasWithTintas = await findAllMarcasWithTintasForSelect();
+   let formattedData = JSON.parse(JSON.stringify(marcasWithTintas));
+
+   if(!Array.isArray(formattedData)) {
+      formattedData = Array(formattedData);
+   }
+
+   const renamedData = formattedData.map(item => (
+      {
+         label: item.label,
+         options: item.marca_tinta
+      }
+   ))
+   return renamedData;
 }
 
 async function getMarcaByIdService(idMarca) {
@@ -84,4 +135,13 @@ async function updateMarcaByIdService(id, newMarcaData) {
    
 } 
 
-module.exports = {getAllMarcasService, getAllMarcasForSelectService, getMarcaByIdService, createMarcaService, updateMarcaByIdService}
+module.exports = {
+   getAllMarcasService, 
+   getAllMarcasForSelectService,
+   getAllMarcasWithTonersForSelectService,
+   getAllMarcasWithCilindrosForSelectService,
+   getAllMarcasWithTintasForSelectService,
+   getMarcaByIdService, 
+   createMarcaService, 
+   updateMarcaByIdService
+}

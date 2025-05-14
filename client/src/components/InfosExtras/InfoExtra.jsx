@@ -7,7 +7,7 @@ export default function InfoExtra({infoBoxExtra=[]}) {
         <div className={`${styles.infoExtra} fadeIn`}>
             {infoBoxExtra.map(info => {
                 return(
-                    <InfoContent key={info.id} styles={styles} {...info}/>
+                    <InfoContent key={info.id} {...info}/>
                 )
             })}
         </div>

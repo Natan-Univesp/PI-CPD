@@ -96,7 +96,21 @@ async function findCilindroById(idCilindro) {
 
 
 async function findCilindroByModelo(modelo) {
-   const cilindro = await Cilindro.findOne({ where: { modelo } });
+   const cilindro = await Cilindro.findOne({
+      include: {
+         association: "marca",
+         attributes: []
+      },
+      attributes: {
+         include: [
+            [sequelize.col("marca.marca"), "marca"]
+         ]
+      },
+      where: { 
+         modelo
+      },
+      raw: true
+   });
    return cilindro;
 }
 
@@ -130,6 +144,17 @@ async function updateCilindro(id, newCilindroData) {
    return updatedCilindro;
 }
 
+
+
+async function findAndCountAllCilindros() {
+   const { count } = await Cilindro.findAndCountAll({
+      where: {
+         situacao: "ATIVO"
+      }
+   });
+   return { total_registered: count };
+}
+
 module.exports = {
    findAllCilindros,
    findAllTrashCilindros,
@@ -139,4 +164,5 @@ module.exports = {
    findCilindroByMarcaId,
    createNewCilindro,
    updateCilindro,
+   findAndCountAllCilindros
 };

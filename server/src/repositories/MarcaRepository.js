@@ -38,6 +38,63 @@ async function findAllMarcasForSelect() {
    return marcas;
 }
 
+async function findAllMarcasWithTonersForSelect() {
+   const marcas = await Marca.findAll({
+      include: {
+         association: "marca_toner",
+         attributes: [
+            ["modelo", "label"],
+            ["modelo", "value"]
+         ],
+         where: {
+            situacao: "ATIVO"
+         }
+      },
+      attributes: [
+         ["marca", "label"]
+      ]
+   })
+   return marcas;
+}
+
+async function findAllMarcasWithCilindrosForSelect() {
+   const marcas = await Marca.findAll({
+      include: {
+         association: "marca_cilindro",
+         attributes: [
+            ["modelo", "label"],
+            ["modelo", "value"]
+         ],
+         where: {
+            situacao: "ATIVO"
+         }
+      },
+      attributes: [
+         ["marca", "label"]
+      ]
+   })
+   return marcas;
+}
+
+async function findAllMarcasWithTintasForSelect() {
+   const marcas = await Marca.findAll({
+      include: {
+         association: "marca_tinta",
+         attributes: [
+            ["modelo", "label"],
+            ["modelo", "value"]
+         ],
+         where: {
+            situacao: "ATIVO"
+         }
+      },
+      attributes: [
+         ["marca", "label"]
+      ],
+   })
+   return marcas;
+}
+
 async function findMarcaById(idMarca) {
    const marca = await Marca.findByPk(idMarca);
    return marca;
@@ -62,4 +119,14 @@ async function updateMarca(idMarca, newMarcaInfo) {
    return updatedMarca;
 }
 
-module.exports = { findAllMarcas, findAllMarcasForSelect, findMarcaById, findMarcaByName, createNewMarca, updateMarca };
+module.exports = { 
+   findAllMarcas, 
+   findAllMarcasForSelect,
+   findAllMarcasWithTonersForSelect,
+   findAllMarcasWithCilindrosForSelect,
+   findAllMarcasWithTintasForSelect,
+   findMarcaById, 
+   findMarcaByName, 
+   createNewMarca, 
+   updateMarca 
+};

@@ -8,6 +8,7 @@ const tintaRouter = require("./TintaRouter.js");
 const cilindroRouter = require("./CilindroRouter.js");
 const requestSupplyRouter = require("./RequestSupplyRouter.js");
 const retiradaSupplyRouter = require("./RetiradaSupplyRouter.js");
+const infoExtraRouter = require("./InfoExtraRouter.js");
 const authMiddleware = require("../middlewares/authMiddleware.js");
 
 const router = Router();
@@ -20,6 +21,7 @@ router.use("/tintas", authMiddleware, tintaRouter);
 router.use("/cilindros", authMiddleware, cilindroRouter);
 router.use("/solicitacoes", authMiddleware, requestSupplyRouter);
 router.use("/retiradas", authMiddleware, retiradaSupplyRouter);
+router.use("/infos-extras", authMiddleware, infoExtraRouter)
 
 
 module.exports = router;

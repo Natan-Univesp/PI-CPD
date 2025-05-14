@@ -1,11 +1,15 @@
-import PropTypes from 'prop-types';
+import { useState } from 'react';
 import {NavLink, useLocation} from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+import styles from "./Navbar.module.css";
 
 import { IoIosArrowUp as IconDropList} from "react-icons/io";
-import { useState } from 'react';
+import { useUser } from '../../Context/UserContext';
 
-export default function Navlist({listContent=[], styles, handleCloseMenu}) {
+export default function Navlist({listContent=[], handleCloseMenu}) {
     const location = useLocation();
+    const {user} = useUser();
 
     const [dropDownInfo, setDropDownInfo] = useState({});
 
@@ -26,8 +30,6 @@ export default function Navlist({listContent=[], styles, handleCloseMenu}) {
         return false;
     }
 
-    const handleTeste = () => console.log("ei, isso é um teste");
-
     return(
         <ul>
             {listContent.map((content) => {
@@ -42,13 +44,15 @@ export default function Navlist({listContent=[], styles, handleCloseMenu}) {
                         </li>
                     )
                 }
-                return(
-                    <li key={content.id}>
-                        <NavLink to={content.path} className={({isActive}) => styleValidation(isActive, content) ? styles.active : ""} onClick={handleCloseMenu}>
-                            {content.icon}{content.title}
-                        </NavLink>
-                    </li>
-                )
+                if(!(content.path === "/admin" && (!user || user?.nivel_acesso > 1))) {
+                    return(
+                        <li key={content.id}>
+                            <NavLink to={content.path} className={({isActive}) => styleValidation(isActive, content) ? styles.active : ""} onClick={handleCloseMenu}>
+                                {content.icon}{content.title}
+                            </NavLink>
+                        </li>
+                    )
+                }
             })}
         </ul>
     )
@@ -56,6 +60,5 @@ export default function Navlist({listContent=[], styles, handleCloseMenu}) {
 
 Navlist.propTypes = {
     listContent: PropTypes.array,
-    styles: PropTypes.object.isRequired,
     handleCloseMenu: PropTypes.func
 }

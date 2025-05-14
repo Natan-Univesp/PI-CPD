@@ -1,41 +1,123 @@
-import { useOutletContext } from "react-router-dom";
 import { useEffect } from "react";
+import { useOutletContext } from "react-router-dom";
+
+//Ícones
+import { FaPlus as IconAddToner } from "react-icons/fa6";
+import { FaTrashAlt as IconDel } from "react-icons/fa";
+import { PiStackPlus as IconEstoque } from "react-icons/pi";
+
+//Component
+import SupplyMain from "../Supply/SupplyMain";
+
+//Context
 import { useModal } from "../../Context/ModalContext";
-
-
+import { useToner } from "../../Context/TonerContext";
+import { moveTonerToTrashService } from "../../services/toner.service";
+import { useAlert } from "../../Context/AlertContext";
+import { useInfoExtra } from "../../Context/InfoExtraContext";
 
 export default function TonerInfo() {
-    const {setTitle} = useOutletContext();
-    const { showModal } = useModal();
+   const { setTitle } = useOutletContext();
+   const { showModal } = useModal();
+   const { showSuccessAlert, showErrorAlert } = useAlert();
+   const { 
+      toners,
+      filteredToners,
+      getAllToners, 
+      getAllTonersByMarca,
+      isLoading,
+      getAllTrashToners,
+      searchValue,
+      setSearchValue
+   } = useToner();
+   const { getAllTonerPageStats } = useInfoExtra();
 
-    /*
-        Aqui será possível trabalhar com todos os formulários
-        Vou deixar uma pequena lista de "modalName" e para qual formulário ela leva
-        =============================
-        registerToner - Formulário de Cadastro de Toner
-        registerCilindro - Formulário de Cadastro de Cilindro
-        registerTinta - Formulário de Cadastro de Tinta
-        registerUser - Formulário de Cadastro de Usuários
-        registerMarca - Formulário de Cadastro de Marca
-        =============================
+   const actionList = [
+      {
+         id: 1,
+         icon: <IconAddToner />,
+         text: "Adicionar Toner",
+         placeholder: "ADICIONAR",
+         nomeModal: "addToner",
+         handleOpenModal: () =>
+            showModal({
+               modalName: "registerToner",
+               customStyle: { overflow: "initial" }
+            }),
+      },
+      {
+         id: 2,
+         icon: <IconEstoque />,
+         text: "Reestocar Toners",
+         placeholder: "REESTOCAR",
+         handleOpenModal: () => showModal({ 
+            modalName: "reestoqueToner"
+         }),
+      },
+      {
+         id: 3,
+         icon: <IconDel />,
+         text: "Lixeira",
+         placeholder: "LIXEIRA",
+         handleOpenModal: () => showModal({ 
+            modalName: "lixeiraToner"
+         }),
+      },
+   ];
 
-        Para trocar a exibição de cada formulário 
-        basta substituir o "registerToner" abaixo por um dos informados acima
+   const handleDeleteToner = async (id) => {
+      try {
+         const res = await moveTonerToTrashService(id);
+         const { status } = res.data;
+         if(status === "success") {
+            showSuccessAlert({
+               title: "Remoção Concluída",
+               message: "O toner foi movido para a lixeira. Você ainda pode acessar suas informações navegando pela lixeira"
+            })
+            await getAllToners();
+            await getAllTrashToners();
+            await getAllTonerPageStats();
+         }
+      } catch (error) {
+         console.log(error);
+         if(error?.response?.data) {
+            const { code, errMessage } = error.response.data;
+            
+            if(code === "ALREADY_MOVED_SUPPLY") {
+               showErrorAlert({
+                  title: "Erro ao Mover o Toner para a Lixeira",
+                  message: errMessage
+               })
+            }
+         }
+         
+      }
+   }
 
-    */
+   //Definição de título
+   useEffect(() => {
+      setTitle("Toners");
+   }, []);
 
-    //Definição de título
-    useEffect(() => {
-        setTitle("Toners");
-        showModal({modalName: "registerToner", customStyle: {overflow: "initial"}})
-    }, [])
-
-
-    return(
-        <>
-            <h2 className="subTitle">SubTítulo de Toners</h2>
-            <p>Aqui tem alguma coisa</p>
-        </>
-
-    )
+   return (
+      <SupplyMain
+         subTitle={"Consulta de Toners"}
+         actionData={actionList}
+         supplyInfo={{
+            data: filteredToners,
+            handleEdit: (id) => {
+               showModal({
+                  modalName: "editToner",
+                  customStyle: { overflow: "initial" },
+                  data: { id },
+               });
+            },
+            handleDelete: handleDeleteToner,
+            isLoading,
+            searchValue,
+            setSearchValue,
+            getAllSuppliesByMarca: getAllTonersByMarca
+         }}
+      />
+   );
 }

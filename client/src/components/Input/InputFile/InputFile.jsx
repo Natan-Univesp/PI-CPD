@@ -1,9 +1,40 @@
+import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
+import { FaPlus as IconAdd} from "react-icons/fa";
 import styles from "./InputFile.module.css";
 
-export function InputFile() {
+export default function InputFile({register = {}, watchImg, error}) {
+    const [previewImage, setPreviewImage] = useState("");
+
+    useEffect(() => {
+        if(typeof watchImg === "object") {
+            console.log('entrou aqui');
+            setPreviewImage(URL.createObjectURL(watchImg[0]));
+        } else {
+            console.log("entrou lá")
+            setPreviewImage(watchImg);
+        }
+        
+    }, [watchImg])
+
     return(
         <>
-            <p className={styles.example}>Criação do Input de imagem</p>
+            <div className={`${styles.inputImageContainer} ${(error) ? styles.inputImageError : ""}`}>
+                <label htmlFor="imageSelect"><IconAdd/></label>
+                <input type="file" id="imageSelect" style={{display: "none"}} {...register}/>
+                {previewImage && <img src={previewImage} alt="impressora_imagem"/>}
+                {error && <span className={`${styles.errorMsgCustom} errorMessage`}>{error?.message}</span>}
+            </div>
         </>
     )
+}
+
+InputFile.propTypes = {
+    register: PropTypes.object,
+    watchImg: PropTypes.oneOfType([
+                    PropTypes.string,
+                    PropTypes.array,
+                    PropTypes.object
+            ]),
+    error: PropTypes.object
 }

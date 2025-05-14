@@ -3,24 +3,25 @@ import Navlist from "./Navlist";
 import styles from "./Navbar.module.css";
 
 //Icones
-//navBarMenu Responsive 
 import { HiMenu as IconMenu} from "react-icons/hi";
-//Home
 import { FaHome as IconHome} from "react-icons/fa";
-//Toners
 import { FaBoxesStacked as IconBox} from "react-icons/fa6";
-//Ícone de Tintas
-import { RiInkBottleLine as IconInk} from "react-icons/ri";
-//Ícone de Marca
-import { BiCategory as IconMarca } from "react-icons/bi";
-//Ícone de Administrador
-import { MdAdminPanelSettings as IconAdmin } from "react-icons/md";
-//Ícone de Usuário
+import { BsFillPrinterFill as IconPrinter} from "react-icons/bs";
 import { FaUser as IconUser} from "react-icons/fa";
-//Ícone de Logout
 import { TbLogout as IconLogout} from "react-icons/tb";
+import { RiInkBottleLine as IconInk} from "react-icons/ri";
+import { BiCategory as IconMarca } from "react-icons/bi";
+import { BiSolidCylinder as IconCilindro} from "react-icons/bi";
+import { MdAdminPanelSettings as IconAdmin } from "react-icons/md";
+import { FaTools as IconManutencao } from "react-icons/fa";
+import { useUser } from "../../Context/UserContext";
+import { logoutService } from "../../services/user.service";
+import { useNavigate } from "react-router-dom";
+
 
 export default function Navbar() {
+    const {user} = useUser();
+    const navigate = useNavigate();
 
     const navLinkCollection = [
         {
@@ -45,7 +46,7 @@ export default function Navbar() {
                     id: 4,
                     title: "Cilindros", 
                     path:"/cilindro", 
-                    icon:<IconBox className={styles.iconList}/>},
+                    icon: <IconCilindro className={styles.iconList}/>},
                 {
                     id: 5,
                     title: "Tintas", 
@@ -57,16 +58,41 @@ export default function Navbar() {
                     title: "Marcas",
                     path: "/marca",
                     icon: <IconMarca className={styles.iconList}/>
-                } 
+                },
+
             ]
         },
+        // {
+        //     id: 7,
+        //     title: "Impressoras",
+        //     icon: <IconPrinter className={styles.iconList}/>,
+        //     subList: [
+        //         {
+        //             id: 8,
+        //             title: "Geral", 
+        //             path:"/impressora", 
+        //             icon: <IconPrinter className={styles.iconList}/>
+        //         },
+        //         {
+        //             id: 9,
+        //             title: "Alocações", 
+        //             path: "/alocacao", 
+        //             icon: <IconPrinter className={styles.iconList}/>
+        //         },
+        //         {
+        //             id: 10,
+        //             title: "Manutenções", 
+        //             path: "/manutencao", 
+        //             icon: <IconManutencao className={styles.iconList}/>
+        //         }
+        //     ]
+        // },
         {
-            id: 7,
+            id: 11,
             title: "Administrador",
             path: "/admin",
             icon: <IconAdmin className={styles.iconList}/>
         }
-
     ]
 
     const [isActiveMenu, setIsActiveMenu] = useState(false);
@@ -74,6 +100,15 @@ export default function Navbar() {
     const handleCloseMenu = () => {
         if(isActiveMenu) {
             setIsActiveMenu(false);
+        }
+    }
+
+    const handleLogout = async () => {
+        try {
+            await logoutService();
+            navigate("/auth");
+        } catch (error) {
+            console.log(error);
         }
     }
     
@@ -84,17 +119,19 @@ export default function Navbar() {
                 <h1>CPD</h1>
             </section>
             <section className={`${styles.navContent__info} ${isActiveMenu ? styles.navContent__info__active : ""}`}>
-                <Navlist listContent={navLinkCollection} styles={styles} handleCloseMenu={handleCloseMenu}/>
-                <div className={styles.navContent__info__login}>
-                    <div className={styles.info__login__user}>
-                        <IconUser className={styles.login__user__icon}/>
-                        <p className={styles.login__user__name}>{"Nome de usuário"}</p>
+                <Navlist listContent={navLinkCollection} handleCloseMenu={handleCloseMenu}/>
+                {user?.user &&
+                    <div className={styles.navContent__info__login}>
+                        <div className={styles.info__login__user}>
+                            <IconUser className={styles.login__user__icon}/>
+                            <p className={styles.login__user__name}>{user?.user}</p>
+                        </div>
+                        <button className={styles.info__login__btn} onClick={handleLogout}>
+                            <IconLogout className={styles.login__btn__icon}/>
+                            Sair
+                        </button>
                     </div>
-                    <button className={styles.info__login__btn} onClick={() => console.log("clique")}>
-                        <IconLogout className={styles.login__btn__icon}/>
-                        Sair
-                    </button>
-                </div>
+                }
             </section>
             <button className={styles.navContent__menuBtn} onClick={() => setIsActiveMenu(prevValue => !prevValue)}>
                 <IconMenu className={styles.menuBtn__icon}/>

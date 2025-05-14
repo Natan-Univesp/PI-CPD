@@ -82,6 +82,29 @@ async function findAllTonersByMarca(idMarca) {
 
 
 
+async function findTonerByModelo(idMarca) {
+   const toner = await Toner.findOne({
+      include: {
+         association: "marca",
+         attributes: [],
+      },
+      attributes: [
+         "id",
+         "modelo",
+         [sequelize.col("marca.marca"), "marca"],
+         "qtd",
+      ],
+      where: {
+         situacao: "ATIVO",
+         id_marca: idMarca
+      },
+      raw: true,
+   });
+   return toner;
+}
+
+
+
 async function findTonerById(idToner) {
    const toner = await Toner.findByPk(idToner, {
       include: {
@@ -95,7 +118,21 @@ async function findTonerById(idToner) {
 
 
 async function findTonerByModelo(modelo) {
-   const toner = await Toner.findOne({ where: { modelo } });
+   const toner = await Toner.findOne({
+      include: {
+         association: "marca",
+         attributes: []
+      },
+      attributes: {
+         include: [
+            [sequelize.col("marca.marca"), "marca"]
+         ]
+      },
+      where: { 
+         modelo
+      },
+      raw: true
+   });
    return toner;
 }
 
@@ -128,6 +165,17 @@ async function updateToner(id, newTonerData) {
    return updatedToner;
 }
 
+
+
+async function findAndCountAllToners() {
+   const { count } = await Toner.findAndCountAll({
+      where: {
+         situacao: "ATIVO"
+      },
+   });
+   return { total_registered: count };
+}
+
 module.exports = {
    findAllToners,
    findAllTrashToners,
@@ -137,4 +185,5 @@ module.exports = {
    findTonerByMarcaId,
    createNewToner,
    updateToner,
+   findAndCountAllToners
 };

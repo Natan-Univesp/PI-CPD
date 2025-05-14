@@ -1,3 +1,4 @@
+const CannotCreateError = require("../classes/CannotCreateError");
 const {
    findAllRetiradas,
    findAllRetiradasToner,
@@ -7,6 +8,9 @@ const {
    findAllRetiradasByFilterWithOrderBy,
    createRetiradas,
 } = require("../repositories/RetiradaSupplyRepository");
+const { decrementCilindroService } = require("./CilindroServices");
+const { decrementTintaService } = require("./TintaServices");
+const { decrementTonerService } = require("./TonerServices");
 
 async function getAllRetiradasService() {
    const allRetiradas = await findAllRetiradas();
@@ -35,9 +39,16 @@ async function getRetiradaByIdService(id) {
 
 async function getAllRetiradasByFilterWithOrderByService(orderBy, filterOptions) {
    const orderByUpperCase = String(orderBy).toUpperCase();
+   const filterOptionsNotEmpty = Object.entries(filterOptions).reduce((acc, [key, value]) => {
+      if(value) {
+         acc[key] = value;
+      }
+      return acc;
+   }, {});
+
    const filteredRetirada = await findAllRetiradasByFilterWithOrderBy(
       orderByUpperCase,
-      filterOptions
+      filterOptionsNotEmpty
    );
    return filteredRetirada;
 }
@@ -45,9 +56,24 @@ async function getAllRetiradasByFilterWithOrderByService(orderBy, filterOptions)
 async function createRetiradasService(retiradaData) {
    const { retirado_por, solicitante, setor, local, supplies } = retiradaData;
 
-   const retiradaCollection = supplies.map((item) => {
-      return { retirado_por, solicitante, setor, local, ...item };
-   });
+   const retiradaCollection = await Promise.all(
+      supplies.map(async(supply) => {
+         const modelToUpperCase = supply.modelo;
+         if(supply.tipo_suprimento === "Toner") {
+            await decrementTonerService(modelToUpperCase, supply.qtd_solicitada);
+         
+         } else if(supply.tipo_suprimento === "Cilindro") {
+            await decrementCilindroService(modelToUpperCase, supply.qtd_solicitada);
+
+         } else if(supply.tipo_suprimento === "Tinta") {
+            await decrementTintaService(modelToUpperCase, supply.qtd_solicitada);
+         
+         } else {
+            throw new CannotCreateError("Não foi possível retirar o(s) suprimento(s)")
+         }
+         return { retirado_por, solicitante, setor, local, ...supply };
+      })
+   )
 
    const createdRetirada = await createRetiradas(retiradaCollection);
 

@@ -20,18 +20,14 @@ export function ModalProvider({children}) {
     }
 
 
-    // Abre a modal
-    const showModal = ({modalName, customStyle = {}, data = {}}) => {
-        defineModalParams({isOpen: true, modalName, customStyle, data})
+    const showModal = ({modalName = "", customStyle = {}, data = {}}) => {
+        defineModalParams({isOpen: true, modalName, customStyle, data: data})
     }
 
-    //Fecha a modal
     const closeModal = () => {
-        defineModalParams({isOpen: false, modalName: "", customStyle: {}, data: {}});
-
+        defineModalParams({isOpen: false, modalName: "", customStyle: {}, data: {}})
     }
 
-    // Retorna os dados passados para modal
     const showDataInfo = () => {
         return modalRef.data || {}
     }

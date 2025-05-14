@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import styles from './SubNav.module.css';
 
-export function SubNav({navInfo}) {
+export default function SubNav({navInfo}) {
     const [firstNavInfo, lastNavInfo] = navInfo;
 
     return(

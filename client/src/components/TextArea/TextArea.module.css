@@ -36,3 +36,19 @@
 .textAreaContainer textarea::placeholder {
     opacity: .3;
 }
+
+
+/* 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+           Estilização do TextArea Error
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+.textAreaError label {
+    color: var(--colorRed)!important;
+    font-weight: 700!important;
+}
+
+.textAreaError textarea {
+    border: 1px solid var(--colorRed)!important;
+    color: var(--colorRed)!important;
+}

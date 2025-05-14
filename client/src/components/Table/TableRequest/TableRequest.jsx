@@ -4,21 +4,42 @@ import '../../../assets/css/Table.css';
 //Componentes de tabela
 import THeadRequest from '../TableComponents/THead/THeadRequest';
 import TBodyRequest from '../TableComponents/TBody/TBodyRequest';
+import { useModal } from '../../../Context/ModalContext';
+import { useSolicitacao } from '../../../Context/SolicitacaoContext';
 
 
 export default function TableRequest({dataInfo}) {
-    const fieldName = ["Modelo", "Marca", "Categoria", "Quantidade", "Status"];
-    const dataRequest = {...dataInfo.solicitante, data_solicitacao: dataInfo.data_solicitacao};
-    const dataSupply = dataInfo.suprimentos;
+    const { showModal } = useModal();
+    const { getAllSolicitacoes } = useSolicitacao();
+    const fieldName = ["ID", "Modelo", "Marca", "Categoria", "Quantidade", "Status"];
+    const solicitacaoData = {
+        solicitante: dataInfo.solicitante,
+        setor: dataInfo.setor,
+        local: dataInfo.local, 
+        data_solicitacao: dataInfo.created_at
+    };
+    const dataSupply = dataInfo.request_itens;
+
+    const handleOpenModal = () => {
+        showModal({
+            modalName: "confirmRetiradaSupply",
+            data: {
+                supplies: dataSupply,
+                solicitacao: solicitacaoData,
+                idRequest: dataInfo.id,
+                getAllSolicitacoes
+            }
+        })
+    }
 
     return(
         <div className={"tableContainer fadeIn"}>
             <table>
                 <thead>
-                    <THeadRequest dataRequest={dataRequest} fieldName={fieldName} hasActionBtn={true}/>
+                    <THeadRequest dataRequest={solicitacaoData} fieldName={fieldName} handleOpenModal={handleOpenModal}/>
                 </thead>
                 <tbody>
-                    {dataSupply.map((supply, index) => <TBodyRequest key={index} dataInfo={supply}/>)}
+                    {dataSupply.map((supply) => <TBodyRequest key={supply.id} dataInfo={supply} solicitacaoInfo={solicitacaoData}/>)}
                 </tbody>
             </table>
         </div>

@@ -9,15 +9,19 @@ router
    .post(userController.createUser);
 
 router
-   .route("/:id")
-   .get(userController.getUserById)
-
-router
    .route("/logged")
    .get(userController.getUserLoggedById)
 
 router
    .route("/default-users")
    .get(userController.getAllDefaultUsers)
+
+router
+   .route("/default-users/:idUser")
+   .patch(userController.changeStatusUser)
+
+router
+   .route("/:id")
+   .get(userController.getUserById)
 
 module.exports = router;

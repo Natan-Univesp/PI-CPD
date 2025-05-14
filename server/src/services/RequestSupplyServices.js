@@ -16,6 +16,9 @@ const {
    findReqWithAvaliableItemByIdItem,
    findReqWithAvaliableItensByIdRequest,
 } = require("../repositories/RequestSupplyRepository");
+const { findTonerByModelo } = require("../repositories/TonerRepository");
+const { findCilindroByModelo } = require("../repositories/CilindroRepository");
+const { findTintaByModelo } = require("../repositories/TintaRepository");
 const { removeAllAcentsForString } = require("../utils/DataFormatUtil");
 const CannotCreateError = require("../classes/CannotCreateError");
 const CannotDeleteError = require("../classes/CannotDeleteError");
@@ -79,6 +82,32 @@ async function getReqSupplyItemByIdService(id_supply_item) {
 
 
 async function registerReqSupplyService(reqSupplyData, reqSupplyItemCollection) {
+   const preparedSupplyItensCollection = await Promise.all(
+      reqSupplyItemCollection.map(async (supplyItem) => {
+         let supplyCache;
+         if(supplyItem.tipo === "Toner") {
+            supplyCache = await findTonerByModelo(supplyItem.supply);
+
+         } else if(supplyItem.tipo === "Cilindro") {
+            supplyCache = await findCilindroByModelo(supplyItem.supply);
+
+         } else if(supplyItem.tipo === "Tinta") {
+            supplyCache = await findTintaByModelo(supplyItem.supply);
+
+         }
+
+         const status = supplyItem.qtd > supplyCache.qtd ? "INDISPONIVEL" : "DISPONIVEL";
+         return {
+            modelo: supplyItem.supply, 
+            marca: supplyCache.marca.toUpperCase(), 
+            categoria: supplyItem.tipo, 
+            status, 
+            qtd_solicitada: 
+            supplyItem.qtd
+         };
+      })
+   )
+
    const createdReqSupply = await createReqSupply(reqSupplyData);
 
    if (!createdReqSupply.id) {
@@ -89,7 +118,7 @@ async function registerReqSupplyService(reqSupplyData, reqSupplyItemCollection) 
 
    const id_request = createdReqSupply.id;
 
-   const reqSupplyItemCollectionWithId = reqSupplyItemCollection.map((item) => {
+   const reqSupplyItemCollectionWithId = preparedSupplyItensCollection.map((item) => {
       return { id_request, ...item };
    });
 

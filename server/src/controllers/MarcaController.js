@@ -1,4 +1,4 @@
-const { getAllMarcasService, getMarcaByIdService, createMarcaService, updateMarcaByIdService, getAllMarcasForSelectService } = require("../services/MarcaServices");
+const { getAllMarcasService, getMarcaByIdService, createMarcaService, updateMarcaByIdService, getAllMarcasForSelectService, getAllMarcasWithTonersForSelectService, getAllMarcasWithCilindrosForSelectService, getAllMarcasWithTintasForSelectService } = require("../services/MarcaServices");
 const errorResponse = require("../helper/ErrorResponseHelper");
 const deleteFile = require("../helper/DeleteFileHelper");
 const NotFoundError = require("../classes/NotFoundError");
@@ -19,6 +19,36 @@ async function getAllMarcasForSelect(req, res) {
       const allMarcas = await getAllMarcasForSelectService();
       return res.status(200).json(allMarcas);
       
+   } catch (error) {
+      errorResponse(error, res);
+   }
+}
+
+async function getAllMarcasWithTonersForSelect(req, res) {
+   try {
+      const allMarcas = await getAllMarcasWithTonersForSelectService();
+      return res.status(200).json(allMarcas);
+
+   } catch (error) {
+      errorResponse(error, res);
+   }
+}
+
+async function getAllMarcasWithCilindrosForSelect(req, res) {
+   try {
+      const allMarcas = await getAllMarcasWithCilindrosForSelectService();
+      return res.status(200).json(allMarcas);
+
+   } catch (error) {
+      errorResponse(error, res);
+   }
+}
+
+async function getAllMarcasWithTintasForSelect(req, res) {
+   try {
+      const allMarcas = await getAllMarcasWithTintasForSelectService();
+      return res.status(200).json(allMarcas);
+
    } catch (error) {
       errorResponse(error, res);
    }
@@ -117,4 +147,13 @@ async function updateMarca(req, res) {
 }
 
 
-module.exports = { getAllMarcas, getAllMarcasForSelect, getMarcaById, createMarca, updateMarca };
+module.exports = { 
+   getAllMarcas, 
+   getAllMarcasForSelect, 
+   getAllMarcasWithTonersForSelect,
+   getAllMarcasWithCilindrosForSelect,
+   getAllMarcasWithTintasForSelect,
+   getMarcaById, 
+   createMarca, 
+   updateMarca 
+};

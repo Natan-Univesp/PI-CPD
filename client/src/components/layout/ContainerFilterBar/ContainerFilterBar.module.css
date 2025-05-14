@@ -1,0 +1,17 @@
+.filterBarContainer {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: var(--marginContent);
+}
+
+@media only screen and (max-width: 767px) {
+    .filterBarContainer {
+        width: 100%;
+        justify-content: center;
+        flex-direction: column;
+        margin: var(--marginContent) 0;
+        padding: 25px 10px;
+    }
+}

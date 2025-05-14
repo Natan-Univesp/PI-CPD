@@ -4,10 +4,11 @@ import PropTypes from "prop-types";
 import THeadGeneral from "../TableComponents/THead/THeadGeneral";
 import TBody from "../TableComponents/TBody/TBody";
 
+
 //Estilizações
 import '../../../assets/css/Table.css';
 
-export default function TableDefault({title = "", fieldCollection = [], dataCollection = [], btnCollection = [], isModalChildren = false, customInfo = {}}) {
+export default function TableDefault({title = "", fieldCollection = [], dataCollection = [], btnCollection = [], fieldsExcludes = [], isModalChildren = false}) {
 
     return(
         <>
@@ -18,16 +19,15 @@ export default function TableDefault({title = "", fieldCollection = [], dataColl
                             <THeadGeneral title={title} fieldCollection={fieldCollection} hasActionBtn={btnCollection.length > 0}/>
                         </thead>
                         <tbody>
-                            {dataCollection.map((row, index) => <TBody key={index} 
-                                                                dataInfo={row} 
+                            {dataCollection.map(data => <TBody key={data.id} 
+                                                                dataInfo={data} 
                                                                 btnInfoCollection={btnCollection}
-                                                                customInfo={customInfo}
-                                                                fieldCollection={fieldCollection}/>)}
+                                                                fieldsExcludes={fieldsExcludes}/>)}
                         </tbody>
                     </table>
                 </div>
 
-                : <p className="textInfoNotAvaliable">Dados não encontrados</p>
+                : <p className="textInfoNotAvaliable textMargin">Dados não encontrados</p>
             }
         </>
     )
@@ -38,6 +38,7 @@ TableDefault.propTypes = {
     fieldCollection: PropTypes.array,
     dataCollection: PropTypes.array,
     btnCollection: PropTypes.array,
+    fieldsExcludes: PropTypes.array,
     isModalChildren: PropTypes.bool
 
 }

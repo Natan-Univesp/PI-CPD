@@ -1,27 +1,24 @@
 import PropTypes from "prop-types";
 import styles from "./TextArea.module.css";
 
-export function TextArea({type = "text", name = "", id = "", value, placeholder = "", textView = "", handleOnChange}) {
+export function TextArea({type = "text", id = "", placeholder = "", textView = "", register = {}, error}) {
     return(
-        <div className={styles.textAreaContainer}>
+        <div className={`${styles.textAreaContainer} ${(error) ? styles.textAreaError : ""}`}>
             <label htmlFor={id}>{textView}</label>
             <textarea type={type} 
-                  name={name} 
-                  id={id}
-                  value={value}
-                  placeholder={placeholder}
-                  onChange={handleOnChange}
-                  required></textarea>
+                      id={id}
+                      placeholder={placeholder}
+                      {...register}></textarea>
+            {error && <span className="errorMessage fadeIn">{error.message}</span>}
         </div>
     )
 }
 
 TextArea.propTypes = {
-    type: PropTypes.string,
-    name: PropTypes.string,
+    type: PropTypes.string.isRequired,
     id: PropTypes.string,
-    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     placeholder: PropTypes.string,
-    textView: PropTypes.string,
-    handleOnChange: PropTypes.func
+    textView: PropTypes.string.isRequired,
+    register: PropTypes.object.isRequired,
+    error: PropTypes.object
 }

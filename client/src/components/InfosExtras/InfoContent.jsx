@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
+import styles from "./InfoExtra.module.css";
+import React from 'react';
 
-export default function InfoContent({styles, IconBox, infoBox="0", titleBox="Título não informado", classInfo}) {
+export default function InfoContent({IconBox, infoBox, titleBox="Título não informado", classInfo}) {
     return(
         <div className={styles.infoExtra__content}>
             <div className={styles.content__title}>
@@ -8,7 +10,10 @@ export default function InfoContent({styles, IconBox, infoBox="0", titleBox="Tí
                 <p className={styles.title__text}>{titleBox}</p>
             </div>            
             <div className={styles[classInfo]}>
-                <p>{infoBox}</p>
+                {React.isValidElement(infoBox)
+                    ? infoBox
+                    : <p>{infoBox}</p>
+                }
             </div>
             
         </div>
@@ -16,9 +21,13 @@ export default function InfoContent({styles, IconBox, infoBox="0", titleBox="Tí
 }
 
 InfoContent.propTypes = {
-    styles: PropTypes.object.isRequired,
     IconBox: PropTypes.elementType,
-    infoBox: PropTypes.string,
+    infoBox: PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.arrayOf(PropTypes.element),
+        PropTypes.string,
+        PropTypes.number
+    ]),
     titleBox: PropTypes.string,
     classInfo: PropTypes.string.isRequired,
     

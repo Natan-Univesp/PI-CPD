@@ -1,46 +1,26 @@
-import { useOutletContext } from "react-router-dom"
+ import { useOutletContext } from "react-router-dom"
 import TableRequest from "../Table/TableRequest/TableRequest";
 import { useEffect } from "react";
+import { Loading } from "../Loading/Loading";
+import { useSolicitacao } from "../../Context/SolicitacaoContext";
 
 export default function ViewRequest() {
     const { setTitle } = useOutletContext();
-    
-    const info = [{_id: 1, 
-                   solicitante: {
-                    nome_solicitante: "Claudia Guiné Ranete",
-                    setor: "Saúde",
-                    local: "Jardim América"
-                   },
-                   suprimentos: [
-                        {_id: 1, modelo: "TN580", marca: "Brother", categoria: "Toner", qtd: 1, status: "disponivel"},
-                        {_id: 2, modelo: "D111", marca: "Samsung", categoria: "Toner", qtd: 1, status: "indisponivel"}
-                   ],
-                   data_solicitacao: "12-10-2024"
-                },
-                {_id: 2, 
-                    solicitante: {
-                     nome_solicitante: "Juliana Silveira Goya",
-                     setor: "Educação",
-                     local: "Secretária da Educação"
-                    },
-                    suprimentos: [
-                         {_id: 1, modelo: "DR620", marca: "Brother", categoria: "Cilindro", qtd: 1, status: "disponivel"},
-                         {_id: 2, modelo: "D111", marca: "Samsung", categoria: "Toner", qtd: 1, status: "disponivel"}
-                    ],
-                    data_solicitacao: "20-10-2024"
-                 }
-                ]
+    const { solicitacoes, isLoading } = useSolicitacao();
     
     useEffect(() => {
         setTitle("Visualização de Solicitações");
     }, [])
 
     return(
-        <>
-            <h2 className="subTitle">Solicitações</h2>
-            {info.length > 0 
-            ? info.map((data, index) => <TableRequest dataInfo={data} key={index}/>)
-            : <p className="textMargin textInfoNotAvaliable"> Nenhuma Solicitação Pendente </p>}
-        </>
+        isLoading 
+            ? <Loading/>
+            : <>
+                <h2 className="subTitle">Solicitações</h2>
+                {solicitacoes.length > 0 
+                ? solicitacoes.map((data) => <TableRequest dataInfo={data} key={data.id}/>)
+                : <p className="textMargin textInfoNotAvaliable"> Nenhuma Solicitação Pendente </p>}
+              </>
+        
     )
 }

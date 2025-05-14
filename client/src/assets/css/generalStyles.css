@@ -30,6 +30,13 @@ h3.textMargin {
     font-size: 16px;
 }
 
+span.errorMessage {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--colorRed);
+    user-select: none;
+}
+
 
 /* Estilização de Layouts */
 
@@ -69,13 +76,11 @@ h3.textMargin {
     color: var(--colorSec);
 }
 
-
-@media only screen and (max-width: 767px) {
-    h2.subTitle {
-        width: 100%;
-        text-align: center;
-        margin: var(--marginContent) 0;
-    }
+.buttonForm-style1__inactive {
+    pointer-events: none!important;
+    user-select: none!important;
+    background-color: var(--colorInactive)!important;
+    border-color: var(--colorInactive)!important;
 }
 
 @media only screen and (max-width: 575px) {

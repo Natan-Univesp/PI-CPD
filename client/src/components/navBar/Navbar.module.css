@@ -282,6 +282,16 @@ Responsividade
 ===================================================================
 */
 
+@media only screen and (min-width: 1400px) {
+    /* .navContent__info ul li:has(ul):hover ul{
+        display: block;
+    }
+
+    .navContent__info ul li:has(ul):hover .iconDropList {
+        transform: rotate(180deg);
+    } */
+}
+
 @media only screen and (max-width: 1399px) {
     header.navContainer {
         width: var(--widthNavResp);

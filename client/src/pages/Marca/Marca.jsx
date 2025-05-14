@@ -1,12 +1,17 @@
-import { Outlet } from "react-router-dom";
 import MainLayout from "../../components/layout/MainLayout";
+import { Outlet } from "react-router-dom";
+import { MarcaProvider } from "../../Context/MarcaContext";
+import { ModalProvider } from "../../Context/ModalContext";
 
-export default function Marca() {
+export function Marca() {
+
     return(
-        <>
-            <MainLayout title={"Marca de Suprimentos"}>
-                <Outlet/>
-            </MainLayout>
-        </>
+        <MarcaProvider>
+            <ModalProvider>
+                <MainLayout title={"Marca de Suprimentos"}>
+                    <Outlet/>
+                </MainLayout>
+            </ModalProvider>
+        </MarcaProvider>
     )
 }

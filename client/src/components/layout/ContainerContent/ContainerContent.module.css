@@ -1,0 +1,14 @@
+.containerContent {
+    background-color: white;
+    margin: var(--marginContent);
+    padding: 10px 15px;
+    border-radius: var(--borderRadiusFix);
+    box-shadow: var(--shadowBox);
+
+}
+
+.containerContent h2 {
+    text-align: left;
+    font-size: var(--fontSizeTitleContent);
+    margin: var(--marginTitleContent);
+}

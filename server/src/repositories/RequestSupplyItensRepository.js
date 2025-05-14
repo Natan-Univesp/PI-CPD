@@ -111,6 +111,38 @@ async function deleteManyReqSupplyItens(id_request) {
 }
 
 
+
+async function findAndCountRequestedToners() {
+   const { count } = await Request_supply_itens.findAndCountAll({
+      where: {
+         categoria: "Toner"
+      }
+   })
+   return { total_requested: count };  
+}
+
+
+
+async function findAndCountRequestedCilindros() {
+   const { count } = await Request_supply_itens.findAndCountAll({
+      where: {
+         categoria: "Cilindro"
+      }
+   })
+   return { total_requested: count };  
+}
+
+
+
+async function findAndCountRequestedTintas() {
+   const { count } = await Request_supply_itens.findAndCountAll({
+      where: {
+         categoria: "Tinta"
+      }
+   })
+   return { total_requested: count };  
+}
+
 module.exports = {
    findAllSupplyItens,
    findSupplyItemById,
@@ -122,5 +154,8 @@ module.exports = {
    findAndCountAllUnavaliableItensById,
    createReqSupplyItens,
    deleteReqSupplyItem,
-   deleteManyReqSupplyItens
+   deleteManyReqSupplyItens,
+   findAndCountRequestedToners,
+   findAndCountRequestedCilindros,
+   findAndCountRequestedTintas
 }

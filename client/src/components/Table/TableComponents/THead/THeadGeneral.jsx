@@ -1,6 +1,6 @@
 import Proptypes from 'prop-types';
 
-export default function THeadGeneral({title = "", fieldCollection, hasActionBtn}) {
+export default function THeadGeneral({title = "", fieldCollection, hasActionBtn = false}) {
     return(
         <>
            {title && <tr className={"tableTitle"}><th>{title}</th></tr>}

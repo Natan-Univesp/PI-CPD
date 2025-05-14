@@ -1,0 +1,26 @@
+.btnFilterContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btnFilterContainer button{
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   background-color: var(--colorSec);
+   padding: 8px 1rem;
+   border-radius: 4px;
+   border: 1px solid var(--colorSec);
+   white-space: nowrap;
+   transition: .2s ease;
+}
+
+.btnFilterContainer button:hover {
+    opacity: .9;
+}
+
+/* Altera o Tamanho do ícone que acompanha o texto, se houver */
+.btnFilterContainer button svg {
+    font-size: 25px;
+}

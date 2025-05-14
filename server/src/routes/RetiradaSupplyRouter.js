@@ -9,10 +9,6 @@ router
    .post(retiradaController.createRetirada)
 
 router
-   .route("/:id")
-   .get(retiradaController.getRetiradaById)
-
-router
    .route("/toners")
    .get(retiradaController.getAllRetiradasToner)
 
@@ -24,8 +20,21 @@ router
    .route("/tintas")
    .get(retiradaController.getAllRetiradasTinta)
 
+//Suprimentos com filtragem
 router
-   .route("/filter")
-   .get(retiradaController.getAllRetiradasByFilter)
+   .route("/toners/filter")
+   .get(retiradaController.getAllRetiradasTonerByFilter)
+
+router
+   .route("/cilindros/filter")
+   .get(retiradaController.getAllRetiradasCilindroByFilter)
+
+router
+   .route("/tintas/filter")
+   .get(retiradaController.getAllRetiradasTintaByFilter)
+
+router
+   .route("/:id")
+   .get(retiradaController.getRetiradaById)
 
 module.exports = router;

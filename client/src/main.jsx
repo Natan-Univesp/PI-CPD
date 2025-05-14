@@ -11,23 +11,31 @@ import RegisterRequest from './components/Home/RegisterRequest.jsx';
 import ViewRequest from './components/Home/ViewRequest.jsx';
 
 //Toner e seus filhos
-import Toner from './pages/Toner/Toner.jsx';
+import Toner from './pages/Toner.jsx';
 import TonerInfo from './components/Toner/TonerInfo.jsx';
 import TonerReport from './components/Toner/TonerReport.jsx';
 
 //Cilindro e seus filhos
-import Cilindro from './pages/Cilindro/Cilindro.jsx';
+import Cilindro from './pages/Cilindro.jsx';
 import CilindroInfo from './components/Cilindro/CilindroInfo.jsx';
 import CilindroReport from './components/Cilindro/CilindroReport.jsx';
 
 //Tinta e seus filhos
-import Tintas from './pages/Tintas/Tintas.jsx';
+import Tintas from './pages/Tintas.jsx';
 import TintaInfo from './components/Tintas/TintaInfo.jsx';
 import TintaReport from './components/Tintas/TintaReport.jsx';
-import Marca from './pages/Marca/Marca.jsx';
-import { MarcaInfo } from './components/Marca/MarcaInfo.jsx';
+
+import { Marca } from './pages/Marca/Marca.jsx';
+import { MarcaInfo } from './components/Marca/MarcaInfo/MarcaInfo.jsx';
 import { Administrador } from './pages/Administrador/Administrador.jsx';
 import { AdminInfo } from './components/Administrador/AdminInfo.jsx';
+import { Autenticacao } from './pages/Autenticacao/Autenticacao.jsx';
+
+// Provider
+import { UserProvider } from './Context/UserContext.jsx';
+import { AlertProvider } from './Context/AlertContext.jsx';
+import { SolicitacaoProvider } from './Context/SolicitacaoContext.jsx';
+import { InfoExtraProvider } from './Context/InfoExtraContext.jsx';
 
 const router = createBrowserRouter([
   {
@@ -45,7 +53,7 @@ const router = createBrowserRouter([
           },
           {
             path: "viewRequest",
-            element: <ViewRequest/>
+            element: <SolicitacaoProvider><ViewRequest/></SolicitacaoProvider>
           }
         ]
       },
@@ -94,7 +102,6 @@ const router = createBrowserRouter([
           }
         ]
       },
-      //Marca
       {
         path: "/marca",
         element: <Marca/>,
@@ -105,7 +112,6 @@ const router = createBrowserRouter([
           }
         ]
       },
-      //Administrador
       {
         path: "/admin",
         element: <Administrador/>,
@@ -118,11 +124,21 @@ const router = createBrowserRouter([
       }
     ]
   },
+  {
+    path: "/auth",
+    element: <Autenticacao/>
+  }
 
 ])
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router}/>
+    <UserProvider>
+      <AlertProvider>
+        <InfoExtraProvider>
+          <RouterProvider router={router}/>
+        </InfoExtraProvider>
+      </AlertProvider>
+    </UserProvider>
   </StrictMode>
 )

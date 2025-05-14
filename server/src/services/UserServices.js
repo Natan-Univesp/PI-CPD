@@ -6,7 +6,7 @@ const {
    updateUserStatus,
    findUserById,
    findUserByName,
-   findUserNameAndAccessLevelById,
+   findUserLoggedInfoById,
 } = require("../repositories/UserRepository");
 const ExistsDataError = require("../classes/ExistsDataError");
 const NotFoundError = require("../classes/NotFoundError");
@@ -28,7 +28,7 @@ async function getUserByIdService(idUser) {
 }
 
 async function getUserLoggedByIdService(idUser) {
-   const user = await findUserNameAndAccessLevelById(idUser);
+   const user = await findUserLoggedInfoById(idUser);
    return user;
 }
 
@@ -48,7 +48,7 @@ async function createUserService(userInfo) {
    const createdUser = await createNewUser({
       user,
       password: hashedPassword,
-      nivel_acesso: 1,
+      nivel_acesso: 2,
       status: "ativo",
    });
    return createdUser;

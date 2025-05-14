@@ -15,6 +15,18 @@ router
    .get(marcaController.getAllMarcasForSelect)
 
 router
+   .route("/toners/select-options")
+   .get(marcaController.getAllMarcasWithTonersForSelect)
+
+router
+   .route("/cilindros/select-options")
+   .get(marcaController.getAllMarcasWithCilindrosForSelect)
+
+router
+   .route("/tintas/select-options")
+   .get(marcaController.getAllMarcasWithTintasForSelect)
+
+router
    .route("/:id")
    .get(marcaController.getMarcaById)
    .patch(uploadAndMoveFile.single("image"), marcaController.updateMarca, middlewareMulter)

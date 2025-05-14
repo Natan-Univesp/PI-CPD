@@ -44,3 +44,11 @@ input[type=number] {
    appearance: textfield;
 
 }
+
+@media only screen and (max-width: 767px) {
+    h2.subTitle {
+        width: 100%;
+        text-align: center;
+        margin: var(--marginContent) 0;
+    }
+}

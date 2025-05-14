@@ -1,0 +1,30 @@
+fieldset.resumeInfoContainer {
+    display: grid;
+    gap: 5px;
+    border: 2px solid var(--colorSec);
+    border-radius: var(--borderRadiusFix);
+    padding: 15px;
+    transition: .2s ease;
+
+}
+
+fieldset.resumeInfoContainer legend {
+    font-weight: 600;
+    font-size: 17px;
+    background-color: var(--colorSec);
+    color: white;
+    padding: 5px 10px;
+}
+
+fieldset.resumeInfoContainer p span {
+    font-family: var(--fontSec);
+}
+
+fieldset.resumeInfoContainer .resumeInfoContent__supply {
+    display: flex;
+    gap: 10px;
+}
+
+hr.resumeInfoContent__spacing {
+    margin: 5px 0!important;
+}

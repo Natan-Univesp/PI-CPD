@@ -1,8 +1,8 @@
-import Proptypes from 'prop-types';
-
-export default function THeadRequest({dataRequest, fieldName, hasActionBtn}) {
+import Proptypes from "prop-types";
+export default function THeadRequest({ dataRequest, fieldName, handleOpenModal }) {
     const maxColumn = fieldName.length;
-    return(
+
+    return (
         <>
             <tr className={"tableHeader"}>
                 <td colSpan={maxColumn + 1}>
@@ -10,7 +10,7 @@ export default function THeadRequest({dataRequest, fieldName, hasActionBtn}) {
                         <div className={"splitContainer"}>
                             <div className={"generalInfo__content"}>
                                 <span>Solicitante:</span>
-                                <p>{dataRequest.nome_solicitante}</p>
+                                <p>{dataRequest.solicitante}</p>
                             </div>
                             <div className={"generalInfo__content"}>
                                 <span>Setor:</span>
@@ -26,21 +26,25 @@ export default function THeadRequest({dataRequest, fieldName, hasActionBtn}) {
                             </div>
                         </div>
                         <div className={"splitContainer"}>
-                            <button className={"generalInfo__Btn"}>Retirar Todos os Suprimentos Prontos</button>
+                            <button className={"generalInfo__Btn"} onClick={handleOpenModal}>
+                                Retirar Todos os Suprimentos Prontos
+                            </button>
                         </div>
                     </div>
                 </td>
             </tr>
             <tr>
-                {fieldName.map((field, index) => <th key={index}>{field}</th>)}
-                {hasActionBtn && <th className={"tableContent__actionTitle"}>Ações</th>}
+                {fieldName.map((field, index) => (
+                    <th key={index}>{field}</th>
+                ))}
+                <th className={"tableContent__actionTitle"}>Ações</th>
             </tr>
         </>
-    )
+    );
 }
 
 THeadRequest.propTypes = {
     dataRequest: Proptypes.object,
     fieldName: Proptypes.array,
-    hasActionBtn: Proptypes.bool
-}
+    handleOpenModal: Proptypes.func,
+};

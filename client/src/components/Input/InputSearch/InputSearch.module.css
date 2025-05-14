@@ -1,0 +1,31 @@
+.searchContainer {
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    width: 300px;
+}
+
+.searchBar {
+    display: flex;
+}
+
+.searchInput {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 0 var(--borderRadiusFix) var(--borderRadiusFix) 0;
+    font-size: 16px;
+    outline: none;
+    font-family: var(--fontSec);
+}
+
+.searchButton {
+    padding: 10px 15px;
+    background-color: var(--colorSec);
+    color: white;
+    border: none;
+    border-radius: var(--borderRadiusFix) 0 0 var(--borderRadiusFix);
+    cursor: pointer;
+    transition: ease .2s;
+    user-select: none;
+    cursor: default;
+}

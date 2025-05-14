@@ -1,0 +1,79 @@
+/* 
+===================================================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            Estilização da barra de filtragem
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+===================================================================
+*/
+
+/* 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      Botões de mudança de Layout
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+.supplyContainer .supplyContent__layoutChange {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px;
+    background-color: white;
+    margin: var(--marginContent);
+    border-radius: var(--borderRadiusFix);
+    font-size: 2.2rem;
+}
+
+.layoutChange__item input { display: none; }
+
+.layoutChange__item label{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--borderRadiusFix);
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.layoutChange__item input:checked ~ label {
+    background-color: black;
+    color: white;
+}
+
+
+
+/* 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      Coleção de informações dos suprimentos
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+.supplyContainer .supplyContent__collection {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+/* 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                Botão de filtragem
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+.btnFilter__active {
+    background-color: var(--colorAux)!important;
+    color: var(--colorSec)!important;
+}
+
+
+
+@media only screen and (max-width: 767px) {
+    .supplyContainer .supplyContent__collection {
+        justify-content: center;
+    }
+
+    .supplyContainer .supplyContent__layoutChange {
+        margin: var(--marginContent) auto;
+    }
+
+
+}

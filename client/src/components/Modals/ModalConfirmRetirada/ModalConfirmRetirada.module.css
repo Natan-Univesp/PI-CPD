@@ -1,0 +1,21 @@
+fieldset.resumeSupplyContainer {
+    display: grid;
+    gap: 5px;
+    border: 2px solid var(--colorSec);
+    border-radius: var(--borderRadiusFix);
+    padding: 15px;
+    transition: .2s ease;
+
+}
+
+fieldset.resumeSupplyContainer legend {
+    font-weight: 600;
+    font-size: 17px;
+    background-color: var(--colorSec);
+    color: white;
+    padding: 5px 10px;
+}
+
+fieldset.resumeSupplyContainer p span {
+    font-family: var(--fontSec);
+}

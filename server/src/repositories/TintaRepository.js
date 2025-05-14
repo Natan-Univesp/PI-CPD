@@ -99,7 +99,21 @@ async function findTintaById(idTinta) {
 
 
 async function findTintaByModelo(modelo) {
-   const tinta = await Tinta.findOne({ where: { modelo } });
+   const tinta = await Tinta.findOne({
+      include: {
+         association: "marca",
+         attributes: []
+      },
+      attributes: {
+         include: [
+            [sequelize.col("marca.marca"), "marca"]
+         ]
+      },
+      where: { 
+         modelo
+      },
+      raw: true
+   });
    return tinta;
 }
 
@@ -133,6 +147,16 @@ async function updateTinta(id, newTintaData) {
    return updatedTinta;
 }
 
+
+async function findAndCountAllTintas() {
+   const { count } = await Tinta.findAndCountAll({
+      where: {
+         situacao: "ATIVO"
+      }
+   });
+   return { total_registered: count };
+}
+
 module.exports = {
    findAllTintas,
    findAllTrashTintas,
@@ -142,4 +166,5 @@ module.exports = {
    findTintaByMarcaId,
    createNewTinta,
    updateTinta,
+   findAndCountAllTintas
 };

@@ -1,69 +1,62 @@
-import { useOutletContext } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { FaFilter } from "react-icons/fa";
+import SupplyReport from "../Supply/SupplyReport";
+import { useOutletContext } from "react-router-dom";
+import {
+   getAllRetiradasCilindrosByFilterService,
+   getAllRetiradasCilindrosService,
+} from "../../services/retiradaSupply.service";
+import { Loading } from "../Loading/Loading";
 
-// Componentes
-import { SearchBar } from "../SearchBar/SearchBar";
-import { TableCilindroReport } from "../Table/TableCilindroReport/TableCilindroReport";
+export default function CilindroReport() {
+   const { setTitle } = useOutletContext();
+   const [retiradas, setRetiradas] = useState();
+   const [filter, setFilter] = useState();
+   const [isLoading, setIsLoading] = useState(true);
 
-export default function CilindroReport() { 
-    const { setTitle } = useOutletContext();
-    const [searchTerm, setSearchTerm] = useState("");
-    const [filterButtonActive, setFilterButtonActive] = useState(false);
+   const getAllCilindrosRetirados = async () => {
+      try {
+         const res = await getAllRetiradasCilindrosService();
+         setRetiradas(res.data);
+         setIsLoading(false);
+      } catch (error) {
+         console.log(error);
+      }
+   };
 
-    useEffect(() => {
-        setTitle("Relatório de Cilindros");
-    }, []);
+   const getAllCilindrosRetiradosByFilter = async () => {
+      try {
+         setIsLoading(true);
+         const res = await getAllRetiradasCilindrosByFilterService(filter);
+         setRetiradas(res.data);
+         setIsLoading(false);
+      } catch (error) {
+         console.log(error);
+      }
+   };
 
-    const handleFilterButtonClick = () => {
-        setFilterButtonActive(!filterButtonActive);
-        // Lógica de filtros específica para o relatório
-    };
+   useEffect(() => {
+      setTitle("Relatório de Cilindros");
+      getAllCilindrosRetirados();
+   }, []);
 
-    return (
-        <>
-            <h2 className="subTitle">Consulta de Retirada de Cilindros</h2>
-            
-            <div style={searchContainer}>
-                <SearchBar 
-                    value={searchTerm} 
-                    onChange={(e) => setSearchTerm(e.target.value)} 
-                    placeholder="Pesquisar cilindros..."
-                />
-                <button 
-                    onClick={handleFilterButtonClick}
-                    style={{
-                        ...filterToggleButton,
-                        backgroundColor: filterButtonActive ? 'black' : 'white',
-                        color: filterButtonActive ? 'white' : 'black',
-                        borderColor: filterButtonActive ? 'black' : '#ddd'
-                    }}
-                >
-                    <FaFilter style={{ marginRight: "0.5rem" }} />
-                    Filtros
-                </button>
-            </div>
-            
-            <TableCilindroReport searchTerm={searchTerm} />
-        </>
-    );
+   useEffect(() => {
+      if (filter) {
+         getAllCilindrosRetiradosByFilter(filter);
+      }
+   }, [filter]);
+
+   if (isLoading) {
+      return <Loading />;
+   }
+
+   return (
+      retiradas && (
+         <SupplyReport
+            subTitle={"Cilindros Retirados"}
+            supplyDataCollection={retiradas}
+            filterParams={filter}
+            setFilterParams={setFilter}
+         />
+      )
+   );
 }
-
-// Estilos (copiados do CilindroInfo para manter consistência)
-const searchContainer = {
-    display: "flex",
-    gap: "1rem",
-    alignItems: "center",
-    marginBottom: "1rem"
-};
-
-const filterToggleButton = {
-    display: "flex",
-    alignItems: "center",
-    padding: "0.5rem 1rem",
-    borderRadius: "4px",
-    cursor: "pointer",
-    whiteSpace: "nowrap",
-    transition: "all 0.3s ease",
-    fontSize: "0.9rem"
-};
