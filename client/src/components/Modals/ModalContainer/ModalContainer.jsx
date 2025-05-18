@@ -11,8 +11,6 @@ import { useModal } from "../../../Context/ModalContext";
 //Componentes
 //Filtragem
 import { ModalFilterDefault } from "../Filter/ModalFilterDefault/ModalFilterDefault";
-import { ModalFilterPrinterGeneral } from "../Filter/ModalFilterPrinterGeneral/ModalFilterPrinterGeneral";
-import { ModalFilterPrinterManut } from "../Filter/ModalFilterPrinterManut/ModalFilterPrinterManut";
 // Toner
 import { ModalRegisterToner } from "../Toner/ModalRegisterToner/ModalRegisterToner";
 import { ModalEditToner } from "../Toner/ModalEditToner/ModalEditToner";
@@ -22,9 +20,6 @@ import { ModalEditCilindro } from "../Cilindro/ModalEditCilindro/ModalEditCilind
 // Tinta
 import { ModalRegisterTinta } from "../Tinta/ModalRegisterTinta/ModalRegisterTinta";
 import { ModalEditTinta } from "../Tinta/ModalEditTinta/ModalEditTinta";
-// Suprimentos
-import { ModalReestoque } from "../ModalReestoque/ModalReestoque";
-import { ModalLixeiraSupply } from "../ModalLixeiraSupply/ModalLixeiraSupply";
 // Marca
 import { ModalAddMarca } from "../Marca/ModalAddMarca/ModalAddMarca";
 import { ModalEditMarca } from "../Marca/ModalEditMarca/ModalEditMarca";
@@ -52,16 +47,6 @@ export default function ModalContainer() {
             name: "filterDefault",
             title: "Filtrar e Organizar",
             modalContent: <ModalFilterDefault />,
-        },
-        {
-            name: "filterPrinterGeneral",
-            title: "Filtrar e Organizar",
-            modalContent: <ModalFilterPrinterGeneral />,
-        },
-        {
-            name: "filterPrinterManut",
-            title: "Filtrar e Organizar",
-            modalContent: <ModalFilterPrinterManut />,
         },
         // Toners
         {
@@ -125,12 +110,6 @@ export default function ModalContainer() {
             name: "reestoqueTinta",
             title: "Reestoque de Tintas",
             modalContent: <ModalReestoqueTinta/> 
-        },
-        { name: "reestoque", title: "Reestoque de Suprimentos", modalContent: <ModalReestoque /> },
-        {
-            name: "lixeiraSupply",
-            title: "Lixeira de Suprimentos",
-            modalContent: <ModalLixeiraSupply />,
         },
         {
             name: "addMarcaSupply",

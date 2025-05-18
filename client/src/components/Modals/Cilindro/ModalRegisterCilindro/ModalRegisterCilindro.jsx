@@ -13,7 +13,6 @@ export function ModalRegisterCilindro() {
 
    const handleRegisterCilindro = async ({ modelo, id_marca, printer_compat, qtd }) => {
       if (!modelo || !id_marca || !printer_compat || !qtd) {
-         console.log({ modelo, id_marca, printer_compat, qtd });
          return showErrorAlert({
             title: "Erro ao cadastrar Cilindro",
             message: "Um ou mais campos não foram devidamente preenchidos",
