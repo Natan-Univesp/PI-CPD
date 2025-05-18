@@ -5,7 +5,7 @@ export function FilterSupplyButtonContent({ content, selectedMarcaId, marcaId, h
    return (
       <button
          className={`${styles.filterButton} ${selectedMarcaId === marcaId ? styles.active : ""}`}
-         onClick={handleOnClick}
+         onClick={() => handleOnClick(marcaId)}
       >
          { content }
       </button>
