@@ -65,6 +65,9 @@ async function findAllCilindrosByMarca(idMarca) {
          "id",
          "modelo",
          [sequelize.col("marca.marca"), "marca"],
+         [sequelize.col("marca.img"), "img"],
+         "printer_compat",
+         "qtd",
          [
             sequelize.fn("DATE_FORMAT", sequelize.col("cilindro.updated_at"), "%d-%m-%Y %H:%i:%s"),
             "updated_at",
